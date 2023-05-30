@@ -1,0 +1,46 @@
+{
+    "name":        "kenshodigital/technical-indicators",
+    "description": "Calculates indicators for technical analysis.",
+    "type":        "library",
+    "version":     "0.1.0",
+    "homepage":    "https://github.com/kenshodigital/technical-indicators",
+    "license":     "MIT",
+    "authors":
+    [
+        {
+            "name":  "Jens Scherbl",
+            "email": "jens@kensho.digital"
+        }
+    ],
+    "autoload":
+    {
+        "psr-4":
+        {
+            "Kensho\\TechnicalIndicators\\": "./src"
+        }
+    },
+    "autoload-dev":
+    {
+        "psr-4":
+        {
+            "Kensho\\TechnicalIndicators\\Tests\\Integration\\": "./tests/integration",
+            "Kensho\\TechnicalIndicators\\Tests\\Unit\\":        "./tests/unit"
+        }
+    },
+    "require":
+    {
+        "php":        "^8.2",
+        "brick/math": "^0.11"
+    },
+    "require-dev":
+    {
+        "phpstan/phpstan": "^1.10",
+        "phpunit/phpunit": "^10.2"
+    },
+    "scripts": {
+        "test": [
+            "phpunit",
+            "phpstan"
+        ]
+    }
+}
