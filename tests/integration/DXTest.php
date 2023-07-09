@@ -13,18 +13,9 @@ use Kensho\TechnicalIndicators\MoveDown\MoveDown;
 use Kensho\TechnicalIndicators\MoveUp\MoveUp;
 use Kensho\TechnicalIndicators\TR\TR;
 use Kensho\TechnicalIndicators\WSMA\WSMA;
-use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-#[CoversClass(DIx::class)]
-#[CoversClass(DMm::class)]
-#[CoversClass(DMp::class)]
-#[CoversClass(DX::class)]
-#[CoversClass(MoveDown::class)]
-#[CoversClass(MoveUp::class)]
-#[CoversClass(TR::class)]
-#[CoversClass(WSMA::class)]
 final class DXTest extends TestCase
 {
     /**

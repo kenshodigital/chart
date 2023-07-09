@@ -6,11 +6,9 @@ use Brick\Math\BigDecimal;
 use Brick\Math\Exception\MathException;
 use Brick\Math\RoundingMode;
 use Kensho\TechnicalIndicators\DMp\DMp;
-use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-#[CoversClass(DMp::class)]
 final class DMpTest extends TestCase
 {
     /**

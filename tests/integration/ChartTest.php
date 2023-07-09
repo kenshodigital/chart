@@ -7,27 +7,10 @@ use Brick\Math\BigInteger;
 use Brick\Math\Exception\MathException;
 use Brick\Math\RoundingMode;
 use Kensho\TechnicalIndicators\Candle;
-use Kensho\TechnicalIndicators\Chart\Chart;
 use Kensho\TechnicalIndicators\Chart\ChartFactory;
-use Kensho\TechnicalIndicators\DMm\DMm;
-use Kensho\TechnicalIndicators\DMp\DMp;
-use Kensho\TechnicalIndicators\DataPoint;
-use Kensho\TechnicalIndicators\MoveDown\MoveDown;
-use Kensho\TechnicalIndicators\MoveUp\MoveUp;
-use Kensho\TechnicalIndicators\TR\TR;
-use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-#[CoversClass(Candle::class)]
-#[CoversClass(Chart::class)]
-#[CoversClass(ChartFactory::class)]
-#[CoversClass(DMm::class)]
-#[CoversClass(DMp::class)]
-#[CoversClass(DataPoint::class)]
-#[CoversClass(MoveDown::class)]
-#[CoversClass(MoveUp::class)]
-#[CoversClass(TR::class)]
 final class ChartTest extends TestCase
 {
     /**

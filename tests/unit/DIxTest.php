@@ -6,11 +6,9 @@ use Brick\Math\BigDecimal;
 use Brick\Math\Exception\MathException;
 use Brick\Math\RoundingMode;
 use Kensho\TechnicalIndicators\DIx\DIx;
-use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-#[CoversClass(DIx::class)]
 final class DIxTest extends TestCase
 {
     /**

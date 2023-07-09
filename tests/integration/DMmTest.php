@@ -8,13 +8,9 @@ use Brick\Math\RoundingMode;
 use Kensho\TechnicalIndicators\DMm\DMm;
 use Kensho\TechnicalIndicators\MoveDown\MoveDown;
 use Kensho\TechnicalIndicators\MoveUp\MoveUp;
-use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-#[CoversClass(DMm::class)]
-#[CoversClass(MoveDown::class)]
-#[CoversClass(MoveUp::class)]
 final class DMmTest extends TestCase
 {
     /**

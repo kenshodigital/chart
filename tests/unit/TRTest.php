@@ -6,11 +6,9 @@ use Brick\Math\BigDecimal;
 use Brick\Math\Exception\MathException;
 use Brick\Math\RoundingMode;
 use Kensho\TechnicalIndicators\TR\TR;
-use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-#[CoversClass(TR::class)]
 final class TRTest extends TestCase
 {
     /**

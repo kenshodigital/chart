@@ -8,11 +8,9 @@ use Brick\Math\RoundingMode;
 use DomainException;
 use Kensho\TechnicalIndicators\WSMA\WSMA;
 use Kensho\TechnicalIndicators\WSMA\WSMAInterface;
-use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-#[CoversClass(WSMA::class)]
 final class WSMATest extends TestCase
 {
     #[DataProvider('provideInvalidPeriod')]

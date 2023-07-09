@@ -8,11 +8,9 @@ use Brick\Math\RoundingMode;
 use DomainException;
 use Kensho\TechnicalIndicators\EMA\EMA;
 use Kensho\TechnicalIndicators\EMA\EMAInterface;
-use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-#[CoversClass(EMA::class)]
 final class EMATest extends TestCase
 {
     /**

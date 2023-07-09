@@ -8,11 +8,9 @@ use Brick\Math\RoundingMode;
 use DomainException;
 use Kensho\TechnicalIndicators\SMA\SMA;
 use Kensho\TechnicalIndicators\SMA\SMAInterface;
-use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-#[CoversClass(SMA::class)]
 final class SMATest extends TestCase
 {
     #[DataProvider('provideInvalidPeriod')]
