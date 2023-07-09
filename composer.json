@@ -16,15 +16,15 @@
     {
         "psr-4":
         {
-            "Kensho\\TechnicalIndicators\\": "./src"
+            "Kensho\\Indicators\\": "./src"
         }
     },
     "autoload-dev":
     {
         "psr-4":
         {
-            "Kensho\\TechnicalIndicators\\Tests\\Integration\\": "./tests/integration",
-            "Kensho\\TechnicalIndicators\\Tests\\Unit\\":        "./tests/unit"
+            "Kensho\\Indicators\\Tests\\Integration\\": "./tests/integration",
+            "Kensho\\Indicators\\Tests\\Unit\\":        "./tests/unit"
         }
     },
     "require":
