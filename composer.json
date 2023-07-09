@@ -2,7 +2,6 @@
     "name":        "kenshodigital/technical-indicators",
     "description": "Calculates indicators for technical analysis.",
     "type":        "library",
-    "version":     "0.1.0",
     "homepage":    "https://github.com/kenshodigital/technical-indicators",
     "license":     "MIT",
     "authors":
@@ -38,9 +37,18 @@
         "phpunit/phpunit": "^10.2"
     },
     "scripts": {
-        "test": [
-            "phpunit",
+        "phpstan":
+        [
             "phpstan"
+        ],
+        "phpunit":
+        [
+            "phpunit"
+        ],
+        "test":
+        [
+            "phpstan",
+            "phpunit"
         ]
     }
 }

@@ -1,0 +1,25 @@
+name: Test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name:    Test
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Validate
+        run:  composer validate --strict
+      - name: Build
+        run:  composer install --prefer-dist --no-progress
+      - name: PHPStan
+        run:  composer run phpstan
+      - name: PHPUnit
+        run:  composer run phpunit
