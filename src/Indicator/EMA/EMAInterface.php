@@ -4,6 +4,9 @@ namespace Kensho\Indicators\Indicator\EMA;
 
 use Brick\Math\BigDecimal;
 
+/**
+ * Calculates the exponential moving average (EMA).
+ */
 interface EMAInterface
 {
     public function calculate(BigDecimal $value): BigDecimal|null;
