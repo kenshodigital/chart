@@ -6,8 +6,6 @@ use Brick\Math\BigDecimal;
 use Brick\Math\Exception\MathException;
 use DomainException;
 use Kensho\Indicators\Indicator\PrecisionTrait;
-use function array_shift;
-use function sprintf;
 
 final class SMA implements SMAInterface
 {
@@ -24,10 +22,9 @@ final class SMA implements SMAInterface
     public function __construct(int $period)
     {
         if ($period < 2) {
-            throw new DomainException(sprintf(
-                'Invalid period: `%d`. Period must be higher than `1` for SMA calculation.',
-                $period,
-            ));
+            throw new DomainException(
+                'Invalid period. Period must be higher than `1` for SMA calculation.'
+            );
         }
 
         $this->period     = $period;
