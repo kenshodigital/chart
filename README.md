@@ -22,28 +22,18 @@ composer require kenshodigital/technical-indicators ^1.0
 
 ## Usage
 
-### Utilities
+- [Prepare chart][8]
+- [Calculate indicators][9]
+- [Calculate trend indicators][10]
 
-- [Trend][8]
-
-#### Trend
+### Prepare chart
 
 ```php
 <?php declare(strict_types=1);
 
-use Brick\Math\BigDecimal;
-use Brick\Math\BigInteger;
-use Brick\Math\RoundingMode;
-use Kensho\Indicators\Utility\Candle;
-use Kensho\Indicators\Utility\Chart\ChartFactory;
-use Kensho\Indicators\Utility\Trend\TrendFactory;
+use Kensho\Indicators\Chart\ChartFactory;
 
-$SMAPeriod = 7;
-$EMAPeriod = 3;
-$chart     = ChartFactory::create();
-$trend     = TrendFactory::create($SMAPeriod, $EMAPeriod);
-$result    = [];
-$values    = [
+$chart = ChartFactory::bootstrap([
     '2023-01-25' => [
         'open'   => '140.8900',
         'high'   => '142.4300',
@@ -59,98 +49,21 @@ $values    = [
         'volume' => '54105068',
     ],
     // ...
-];
-
-foreach ($values as $date => [
-    'open'   => $open,
-    'high'   => $high,
-    'low'    => $low,
-    'close'  => $close,
-    'volume' => $volume,
-]) {
-    $trendResult = $trend->calculate(
-        $chart->calculate(
-            new Candle(
-                BigDecimal::of($open),
-                BigDecimal::of($high),
-                BigDecimal::of($low),
-                BigDecimal::of($close),
-                BigInteger::of($volume),
-            ),    
-        ),    
-    );
-    $result[$date] = [
-        'SMA' => $trendResult->SMA?->toScale(4, RoundingMode::HALF_UP)->__toString(),
-        'EMA' => $trendResult->EMA?->toScale(4, RoundingMode::HALF_UP)->__toString(),
-        'DIp' => $trendResult->DIp?->toScale(4, RoundingMode::HALF_UP)->__toString(),
-        'DIm' => $trendResult->DIm?->toScale(4, RoundingMode::HALF_UP)->__toString(),
-        'ADX' => $trendResult->ADX?->toScale(4, RoundingMode::HALF_UP)->__toString(),
-    ];            
-}
-
-// '2023-01-25' => [
-//     'SMA' => null,
-//     'EMA' => null,
-//     'DIp' => null,
-//     'DIm' => null,
-//     'ADX' => null,
-// ], 
-// ... 
-// '2023-01-30' => [
-//     'SMA' => null,
-//     'EMA' => '143.7100',
-//     'DIp' =>  '32.4763',
-//     'DIm' =>   '2.3342',
-//     'ADX' => null,
-// ],
-// '2023-01-31' => [
-//     'SMA' => null,
-//     'EMA' => '144.0000',
-//     'DIp' =>  '24.7232',
-//     'DIm' =>   '8.3827',
-//     'ADX' =>  '78.6490',
-// ],
-// ...
-// '2023-02-02' => [
-//     'SMA' => '145.0414',
-//     'EMA' => '147.7675',
-//     'DIp' =>  '53.6274',
-//     'DIm' =>   '2.4519',
-//     'ADX' =>  '82.4618',
-// ],
-// ...
+]);
 ```
 
-### Indicators
+### Calculate indicators
 
-- [SMA][9]
-- [EMA][10]
-- [+DI][11]
-- [-DI][12]
-- [ADX][13]
+- [SMA][11]
+- [EMA][12]
+- [+DI & -DI][13]
+- [ADX][14]
 
 #### SMA (Simple Moving Average)
 
 ```php
-<?php declare(strict_types=1);
-
-use Brick\Math\BigDecimal;
-use Brick\Math\RoundingMode;
-use Kensho\Indicators\Indicator\SMA\SMA;
-
 $period = 7;
-$SMA    = new SMA($period);
-$result = [];
-$values = [
-    '2023-01-25' => '141.8600',
-    '2023-01-26' => '143.9600',
-    // ...
-];
-
-foreach ($values as $date => $value) {
-    $SMAResult     = $SMA->calculate(BigDecimal::of($value));
-    $result[$date] = $SMAResult?->toScale(4, RoundingMode::HALF_UP)->__toString(); 
-}
+$result = $chart->getSMA($period);
 
 // '2023-01-25' => null,
 // '2023-01-26' => null,
@@ -163,25 +76,8 @@ foreach ($values as $date => $value) {
 #### EMA (Exponential Moving Average)
 
 ```php
-<?php declare(strict_types=1);
-
-use Brick\Math\BigDecimal;
-use Brick\Math\RoundingMode;
-use Kensho\Indicators\Indicator\EMA\EMA;
-
 $period = 7;
-$EMA    = new EMA($period);
-$result = [];
-$values = [
-    '2023-01-25' => '141.8600',
-    '2023-01-26' => '143.9600',
-    // ...
-];
-
-foreach ($values as $date => $value) {
-    $EMAResult     = $EMA->calculate(BigDecimal::of($value));
-    $result[$date] = $EMAResult?->toScale(4, RoundingMode::HALF_UP)->__toString(); 
-}
+$result = $chart->getEMA($period);
 
 // '2023-01-25' => null,
 // '2023-01-26' => null,
@@ -191,200 +87,37 @@ foreach ($values as $date => $value) {
 // ...
 ```
 
-#### +DI (Positive Directional Indicator)
+#### +DI & -DI (Positive- & Negative Directional Indicator)
 
 ```php
-<?php declare(strict_types=1);
+$period = 7;
+$result = $chart->getDI($period);
 
-use Brick\Math\BigDecimal;
-use Brick\Math\RoundingMode;
-use Kensho\Indicators\Indicator\DIx\DIx;
-use Kensho\Indicators\Indicator\DMp\DMp;
-use Kensho\Indicators\Indicator\MoveDown\MoveDown;
-use Kensho\Indicators\Indicator\MoveUp\MoveUp;
-use Kensho\Indicators\Indicator\TR\TR;
-use Kensho\Indicators\Indicator\WSMA\WSMA;
-
-$period   = 7;
-$moveUp   = new MoveUp;
-$moveDown = new MoveDown;
-$DMpSMA   = new WSMA($period);
-$TR       = new TR;
-$ATR      = new WSMA($period);
-$result   = [];
-$values   = [
-    '2023-01-25' => [
-        'high'  => '142.4300',
-        'low'   => '138.8100',
-        'close' => '141.8600',
-    ],
-    '2023-01-26' => [
-        'high'  => '144.2500',
-        'low'   => '141.9000',
-        'close' => '143.9600',
-    ],
-    // ...
-];
-
-foreach ($values as $date => [
-    'high'  => $high,
-    'low'   => $low,
-    'close' => $close,
-]) {
-    $high           = BigDecimal::of($high);
-    $moveUpResult   = $moveUp->calculate($high);
-    $low            = BigDecimal::of($low);
-    $moveDownResult = $moveDown->calculate($low);    
-    $DMpResult      = DMp::calculate($moveUpResult, $moveDownResult);
-    $DMpSMAResult   = $DMpSMA->calculate($DMpResult);
-    $close          = BigDecimal::of($close);
-    $TRResult       = $TR->calculate($high, $low, $close);    
-    $ATRResult      = $ATR->calculate($TRResult);
-    $result[$date]  = null;
-    
-    if ($DMpSMAResult !== null && $ATRResult !== null) {
-        $DIpResult     = DIx::calculate($DMpSMAResult, $ATRResult);
-        $result[$date] = $DIpResult->toScale(4, RoundingMode::HALF_UP)->__toString();
-    }
-}
-
-// '2023-01-25' => null,
-// '2023-01-26' => null,
+// '2023-01-25' => [
+//     'DIp' => null,
+//     'DIm' => null,
+// ],
+// '2023-01-26' => [
+//     'DIp' => null,
+//     'DIm' => null, 
+// ],
 // ...
-// '2023-02-02' => '44.1913',
-// '2023-02-03' => '50.3535',
-// ...
-```
-
-#### -DI (Negative Directional Indicator)
-
-```php
-<?php declare(strict_types=1);
-
-use Brick\Math\BigDecimal;
-use Brick\Math\RoundingMode;
-use Kensho\Indicators\Indicator\DIx\DIx;
-use Kensho\Indicators\Indicator\DMm\DMm;
-use Kensho\Indicators\Indicator\MoveDown\MoveDown;
-use Kensho\Indicators\Indicator\MoveUp\MoveUp;
-use Kensho\Indicators\Indicator\TR\TR;
-use Kensho\Indicators\Indicator\WSMA\WSMA;
-
-$period   = 7;
-$moveUp   = new MoveUp;
-$moveDown = new MoveDown;
-$DMmSMA   = new WSMA($period);
-$TR       = new TR;
-$ATR      = new WSMA($period);
-$result   = [];
-$values   = [
-    '2023-01-25' => [
-        'high'  => '142.4300',
-        'low'   => '138.8100',
-        'close' => '141.8600',
-    ],
-    '2023-01-26' => [
-        'high'  => '144.2500',
-        'low'   => '141.9000',
-        'close' => '143.9600',
-    ],
-    // ...
-];
-
-foreach ($values as $date => [
-    'high'  => $high,
-    'low'   => $low,
-    'close' => $close,
-]) {
-    $low            = BigDecimal::of($low);
-    $moveDownResult = $moveDown->calculate($low);
-    $high           = BigDecimal::of($high);
-    $moveUpResult   = $moveUp->calculate($high);    
-    $DMmResult      = DMm::calculate($moveDownResult, $moveUpResult);
-    $DMmSMAResult   = $DMmSMA->calculate($DMmResult);
-    $close          = BigDecimal::of($close);
-    $TRResult       = $TR->calculate($high, $low, $close);    
-    $ATRResult      = $ATR->calculate($TRResult);
-    $result[$date]  = null;
-    
-    if ($DMmSMAResult !== null && $ATRResult !== null) {
-        $DImResult     = DIx::calculate($DMmSMAResult, $ATRResult);
-        $result[$date] = $DImResult->toScale(4, RoundingMode::HALF_UP)->__toString();
-    }
-}
-
-// '2023-01-25' => null,
-// '2023-01-26' => null,
-// ...
-// '2023-02-02' => '3.0372',
-// '2023-02-03' => '2.1344',
+// '2023-02-02' => [
+//     'DIp' => '44.1913',
+//     'DIm' =>  '3.0372',
+// ],
+// '2023-02-03' => [
+//     'DIp' => '50.3535',
+//     'DIm' =>  '2.1344',
+// ],
 // ...
 ```
 
 #### ADX (Average Directional Index)
 
 ```php
-<?php declare(strict_types=1);
-
-use Brick\Math\BigDecimal;
-use Brick\Math\RoundingMode;
-use Kensho\Indicators\Indicator\DIx\DIx;
-use Kensho\Indicators\Indicator\DMm\DMm;
-use Kensho\Indicators\Indicator\DMm\DMp;
-use Kensho\Indicators\Indicator\MoveDown\MoveDown;
-use Kensho\Indicators\Indicator\MoveUp\MoveUp;
-use Kensho\Indicators\Indicator\TR\TR;
-use Kensho\Indicators\Indicator\WSMA\WSMA;
-
-$period   = 7;
-$moveUp   = new MoveUp;
-$moveDown = new MoveDown;
-$DMpSMA   = new WSMA($period);
-$DMmSMA   = new WSMA($period);
-$TR       = new TR;
-$ATR      = new WSMA($period);
-$ADX      = new WSMA($period);
-$result   = [];
-$values   = [
-    '2023-01-25' => [
-        'high'  => '142.4300',
-        'low'   => '138.8100',
-        'close' => '141.8600',
-    ],
-    '2023-01-26' => [
-        'high'  => '144.2500',
-        'low'   => '141.9000',
-        'close' => '143.9600',
-    ],
-    // ...
-];
-
-foreach ($values as $date => [
-    'high'  => $high,
-    'low'   => $low,
-    'close' => $close,
-]) {
-    $high           = BigDecimal::of($high);
-    $moveUpResult   = $moveUp->calculate($high);    
-    $low            = BigDecimal::of($low);
-    $moveDownResult = $moveDown->calculate($low);
-    $DMpResult      = DMp::calculate($moveUpResult, $moveDownResult);
-    $DMpSMAResult   = $DMpSMA->calculate($DMpResult);
-    $DMmResult      = DMm::calculate($moveDownResult, $moveUpResult);
-    $DMmSMAResult   = $DMmSMA->calculate($DMmResult);
-    $close          = BigDecimal::of($close);
-    $TRResult       = $TR->calculate($high, $low, $close);    
-    $ATRResult      = $ATR->calculate($TRResult);
-    $result[$date]  = null;
-    
-    if ($DMpSMAResult !== null && $DMmSMAResult !== null && $ATRResult !== null) {
-        $DIpResult     = DIx::calculate($DMpSMAResult, $ATRResult);
-        $DImResult     = DIx::calculate($DMmSMAResult, $ATRResult);
-        $DXResult      = DX::calculate($DIpResult, $DImResult);
-        $ADXResult     = $ADX->calculate($DXResult);
-        $result[$date] = $ADXResult?->toScale(4, RoundingMode::HALF_UP)->__toString();
-    }
-}
+$period = 7;
+$result = $chart->getADX($period);
 
 // '2023-01-25' => null,
 // '2023-01-26' => null,
@@ -394,6 +127,49 @@ foreach ($values as $date => [
 // ...
 ```
 
+### Calculate trend indicators
+
+Calculate all trend indicators (SMA, EMA, +DI, -DI and ADX) in a single run.
+
+```php
+$SMAPeriod = 20
+$EMAPeriod = 10;
+$result    = $chart->getTrend($SMAPeriod, $EMAPeriod);
+
+// '2023-01-25' => [
+//     'SMA' => null,
+//     'EMA' => null,
+//     'DIp' => null,
+//     'DIm' => null,
+//     'ADX' => null,
+// ],
+// ...
+// '2023-02-07' => [
+//     'SMA' => null,
+//     'EMA' => '148.8578',
+//     'DIp' =>  '45.1810',
+//     'DIm' =>   '1.8100',
+//     'ADX' => null,
+// ],
+// ...
+// '2023-02-22' => [
+//     'SMA' => '149.8000',
+//     'EMA' => '151.0938',
+//     'DIp' =>  '28.7024',
+//     'DIm' =>  '18.6931',
+//     'ADX' =>  '67.8187',
+// ],
+// ...
+```
+
+### FAQ
+
+#### Why are numeric values represented as strings?
+
+> Note about floating-point values: instantiating from a float might be unsafe, as floating-point values are imprecise by design, and could result in a loss of information. Always prefer instantiating from a string, which supports an unlimited number of digits.
+>
+> — [brick/math][5]
+
  [1]: https://en.wikipedia.org/wiki/Technical_indicator
  [2]: https://en.wikipedia.org/wiki/Technical_analysis
  [3]: https://www.php.net
@@ -401,9 +177,10 @@ foreach ($values as $date => [
  [5]: https://github.com/brick/math
  [6]: https://github.com/bennycode/trading-signals
  [7]: https://www.alphavantage.co
- [8]: #trend
- [9]: #sma-simple-moving-average
-[10]: #ema-exponential-moving-average
-[11]: #di-positive-directional-indicator
-[12]: #-di-negative-directional-indicator
-[13]: #adx-average-directional-index
+ [8]: #prepare-chart
+ [9]: #calculate-indicators
+[10]: #calculate-trend-indicators
+[11]: #sma-simple-moving-average
+[12]: #ema-exponential-moving-average
+[13]: #di---di-positive---negative-directional-indicator
+[14]: #adx-average-directional-index
