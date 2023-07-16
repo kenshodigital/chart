@@ -5,6 +5,9 @@ namespace Kensho\Chart\Chart;
 use Kensho\Chart\DI;
 use Kensho\Chart\Trend;
 
+/**
+ * Calculate indicators for technical chart analysis.
+ */
 interface ChartInterface
 {
     /**

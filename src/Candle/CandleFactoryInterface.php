@@ -2,6 +2,10 @@
 
 namespace Kensho\Chart\Candle;
 
+/**
+ * Calculates the true range (TR) &
+ * directional movement (+DM & -DM).
+ */
 interface CandleFactoryInterface
 {
     public static function create(

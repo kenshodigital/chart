@@ -6,6 +6,10 @@ use Brick\Math\BigDecimal;
 use Brick\Math\BigInteger;
 use DomainException;
 
+/**
+ * Open price, high price, low price, close price, volume,
+ * true range (TR) & directional movement (+DM & -DM).
+ */
 final readonly class Candle
 {
     public function __construct(

@@ -2,6 +2,9 @@
 
 namespace Kensho\Chart;
 
+/**
+ * Trend indicators.
+ */
 final readonly class Trend
 {
     public function __construct(

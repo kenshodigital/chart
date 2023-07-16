@@ -2,6 +2,9 @@
 
 namespace Kensho\Chart;
 
+/**
+ * Positive- & negative directional indicator (+DI & -DI).
+ */
 final readonly class DI
 {
     public function __construct(

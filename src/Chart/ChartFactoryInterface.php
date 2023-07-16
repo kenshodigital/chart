@@ -2,6 +2,10 @@
 
 namespace Kensho\Chart\Chart;
 
+/**
+ * Creates a chart from the given data to
+ * calculate indicators for technical analysis.
+ */
 interface ChartFactoryInterface
 {
     /**
