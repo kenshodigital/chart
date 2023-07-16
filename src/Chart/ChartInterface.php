@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Kensho\Indicators\Chart;
+namespace Kensho\Chart\Chart;
 
-use Kensho\Indicators\DI;
-use Kensho\Indicators\Trend;
+use Kensho\Chart\DI;
+use Kensho\Chart\Trend;
 
 interface ChartInterface
 {

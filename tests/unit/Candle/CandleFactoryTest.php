@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Kensho\Indicators\Tests\Unit\Candle;
+namespace Kensho\Chart\Tests\Unit\Candle;
 
 use Brick\Math\Exception\MathException;
 use Brick\Math\RoundingMode;
-use Kensho\Indicators\Candle\CandleFactory;
+use Kensho\Chart\Candle\CandleFactory;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 

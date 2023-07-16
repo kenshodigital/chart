@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Kensho\Indicators\Indicator\ADX;
+namespace Kensho\Chart\Indicator\ADX;
 
 use Brick\Math\BigDecimal;
 use Brick\Math\Exception\MathException;
-use Kensho\Indicators\Indicator\PrecisionTrait;
-use Kensho\Indicators\Indicator\WSMA\WSMAInterface;
+use Kensho\Chart\Indicator\PrecisionTrait;
+use Kensho\Chart\Indicator\WSMA\WSMAInterface;
 
 final readonly class ADX implements ADXInterface
 {

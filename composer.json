@@ -1,9 +1,13 @@
 {
-    "name":        "kenshodigital/technical-indicators",
-    "description": "Calculates indicators for technical analysis.",
+    "name":        "kenshodigital/chart",
+    "description": "Calculates indicators for technical chart analysis.",
     "type":        "library",
-    "homepage":    "https://github.com/kenshodigital/technical-indicators",
     "license":     "MIT",
+    "support":
+    {
+        "source": "https://github.com/kenshodigital/chart",
+        "issues": "https://github.com/kenshodigital/chart/issues"
+    },
     "authors":
     [
         {
@@ -15,15 +19,15 @@
     {
         "psr-4":
         {
-            "Kensho\\Indicators\\": "./src"
+            "Kensho\\Chart\\": "./src"
         }
     },
     "autoload-dev":
     {
         "psr-4":
         {
-            "Kensho\\Indicators\\Tests\\Integration\\": "./tests/integration",
-            "Kensho\\Indicators\\Tests\\Unit\\":        "./tests/unit"
+            "Kensho\\Chart\\Tests\\Integration\\": "./tests/integration",
+            "Kensho\\Chart\\Tests\\Unit\\":        "./tests/unit"
         }
     },
     "require":

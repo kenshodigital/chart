@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace Kensho\Indicators\Tests\Unit\Indicator;
+namespace Kensho\Chart\Tests\Unit\Indicator;
 
 use Brick\Math\BigDecimal;
 use Brick\Math\Exception\MathException;
 use Brick\Math\RoundingMode;
 use DomainException;
-use Kensho\Indicators\Indicator\WSMA\WSMA;
-use Kensho\Indicators\Indicator\WSMA\WSMAInterface;
+use Kensho\Chart\Indicator\WSMA\WSMA;
+use Kensho\Chart\Indicator\WSMA\WSMAInterface;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 

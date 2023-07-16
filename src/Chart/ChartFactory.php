@@ -1,17 +1,17 @@
 <?php declare(strict_types=1);
 
-namespace Kensho\Indicators\Chart;
+namespace Kensho\Chart\Chart;
 
-use Kensho\Indicators\Candle\CandleFactory;
-use Kensho\Indicators\Candle\CandleFactoryInterface;
-use Kensho\Indicators\Indicator\ADX\ADXFactory;
-use Kensho\Indicators\Indicator\ADX\ADXFactoryInterface;
-use Kensho\Indicators\Indicator\DI\DIFactory;
-use Kensho\Indicators\Indicator\DI\DIFactoryInterface;
-use Kensho\Indicators\Indicator\EMA\EMAFactory;
-use Kensho\Indicators\Indicator\EMA\EMAFactoryInterface;
-use Kensho\Indicators\Indicator\SMA\SMAFactory;
-use Kensho\Indicators\Indicator\SMA\SMAFactoryInterface;
+use Kensho\Chart\Candle\CandleFactory;
+use Kensho\Chart\Candle\CandleFactoryInterface;
+use Kensho\Chart\Indicator\ADX\ADXFactory;
+use Kensho\Chart\Indicator\ADX\ADXFactoryInterface;
+use Kensho\Chart\Indicator\DI\DIFactory;
+use Kensho\Chart\Indicator\DI\DIFactoryInterface;
+use Kensho\Chart\Indicator\EMA\EMAFactory;
+use Kensho\Chart\Indicator\EMA\EMAFactoryInterface;
+use Kensho\Chart\Indicator\SMA\SMAFactory;
+use Kensho\Chart\Indicator\SMA\SMAFactoryInterface;
 
 final readonly class ChartFactory implements ChartFactoryInterface
 {

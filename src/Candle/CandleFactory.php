@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Kensho\Indicators\Candle;
+namespace Kensho\Chart\Candle;
 
 use Brick\Math\BigDecimal;
 use Brick\Math\BigInteger;

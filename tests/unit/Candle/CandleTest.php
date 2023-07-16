@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace Kensho\Indicators\Tests\Unit\Candle;
+namespace Kensho\Chart\Tests\Unit\Candle;
 
 use Brick\Math\BigDecimal;
 use Brick\Math\BigInteger;
 use Brick\Math\Exception\MathException;
 use DomainException;
-use Kensho\Indicators\Candle\Candle;
+use Kensho\Chart\Candle\Candle;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 

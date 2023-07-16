@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Kensho\Indicators\Tests\Integration\Chart;
+namespace Kensho\Chart\Tests\Integration\Chart;
 
 use Brick\Math\Exception\MathException;
-use Kensho\Indicators\Chart\ChartFactory;
+use Kensho\Chart\Chart\ChartFactory;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 

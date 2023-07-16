@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Kensho\Indicators\Chart;
+namespace Kensho\Chart\Chart;
 
 interface ChartFactoryInterface
 {

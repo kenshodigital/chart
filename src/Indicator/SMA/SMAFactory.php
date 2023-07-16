@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Kensho\Indicators\Indicator\SMA;
+namespace Kensho\Chart\Indicator\SMA;
 
 final readonly class SMAFactory implements SMAFactoryInterface
 {

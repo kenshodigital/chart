@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Kensho\Indicators\Indicator\EMA;
+namespace Kensho\Chart\Indicator\EMA;
 
 use Brick\Math\BigDecimal;
 use Brick\Math\Exception\MathException;
 use DomainException;
-use Kensho\Indicators\Indicator\PrecisionTrait;
+use Kensho\Chart\Indicator\PrecisionTrait;
 
 final class EMA implements EMAInterface
 {

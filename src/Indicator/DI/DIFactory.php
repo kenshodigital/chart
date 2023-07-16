@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Kensho\Indicators\Indicator\DI;
+namespace Kensho\Chart\Indicator\DI;
 
-use Kensho\Indicators\Indicator\WSMA\WSMA;
+use Kensho\Chart\Indicator\WSMA\WSMA;
 
 final readonly class DIFactory implements DIFactoryInterface
 {

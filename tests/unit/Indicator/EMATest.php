@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace Kensho\Indicators\Tests\Unit\Indicator;
+namespace Kensho\Chart\Tests\Unit\Indicator;
 
 use Brick\Math\BigDecimal;
 use Brick\Math\Exception\MathException;
 use Brick\Math\RoundingMode;
 use DomainException;
-use Kensho\Indicators\Indicator\EMA\EMA;
-use Kensho\Indicators\Indicator\EMA\EMAInterface;
+use Kensho\Chart\Indicator\EMA\EMA;
+use Kensho\Chart\Indicator\EMA\EMAInterface;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 

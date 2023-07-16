@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Kensho\Indicators\Indicator\WSMA;
+namespace Kensho\Chart\Indicator\WSMA;
 
 use Brick\Math\BigDecimal;
 

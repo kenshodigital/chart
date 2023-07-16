@@ -1,6 +1,6 @@
-# Technical Indicators
+# kenshō chart
 
-Calculates [indicators][1] for [technical analysis][2] in [PHP][3].
+Calculates [indicators][1] for [technical chart analysis][2] in [PHP][3].
 
 ## General
 
@@ -17,7 +17,7 @@ The library assumes a basic understanding of [technical analysis][2] and how to 
 ## Installation
 
 ```shell
-composer require kenshodigital/technical-indicators ^1.0
+composer require kenshodigital/chart ^2.0
 ```
 
 ## Usage
@@ -31,7 +31,7 @@ composer require kenshodigital/technical-indicators ^1.0
 ```php
 <?php declare(strict_types=1);
 
-use Kensho\Indicators\Chart\ChartFactory;
+use Kensho\Chart\Chart\ChartFactory;
 
 $chart = ChartFactory::bootstrap([
     '2023-01-25' => [

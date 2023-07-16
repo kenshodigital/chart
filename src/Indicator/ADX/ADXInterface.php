@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Kensho\Indicators\Indicator\ADX;
+namespace Kensho\Chart\Indicator\ADX;
 
 use Brick\Math\BigDecimal;
 

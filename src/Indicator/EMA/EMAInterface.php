@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Kensho\Indicators\Indicator\EMA;
+namespace Kensho\Chart\Indicator\EMA;
 
 use Brick\Math\BigDecimal;
 

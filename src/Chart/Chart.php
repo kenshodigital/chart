@@ -1,17 +1,17 @@
 <?php declare(strict_types=1);
 
-namespace Kensho\Indicators\Chart;
+namespace Kensho\Chart\Chart;
 
 use Brick\Math\BigDecimal;
 use Brick\Math\Exception\RoundingNecessaryException;
 use Brick\Math\RoundingMode;
-use Kensho\Indicators\Candle\Candle;
-use Kensho\Indicators\DI;
-use Kensho\Indicators\Indicator\ADX\ADXFactoryInterface;
-use Kensho\Indicators\Indicator\DI\DIFactoryInterface;
-use Kensho\Indicators\Indicator\EMA\EMAFactoryInterface;
-use Kensho\Indicators\Indicator\SMA\SMAFactoryInterface;
-use Kensho\Indicators\Trend;
+use Kensho\Chart\Candle\Candle;
+use Kensho\Chart\DI;
+use Kensho\Chart\Indicator\ADX\ADXFactoryInterface;
+use Kensho\Chart\Indicator\DI\DIFactoryInterface;
+use Kensho\Chart\Indicator\EMA\EMAFactoryInterface;
+use Kensho\Chart\Indicator\SMA\SMAFactoryInterface;
+use Kensho\Chart\Trend;
 
 final readonly class Chart implements ChartInterface
 {

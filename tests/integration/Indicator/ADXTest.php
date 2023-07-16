@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Kensho\Indicators\Tests\Integration\Indicator;
+namespace Kensho\Chart\Tests\Integration\Indicator;
 
 use Brick\Math\BigDecimal;
 use Brick\Math\Exception\MathException;
 use Brick\Math\RoundingMode;
-use Kensho\Indicators\Indicator\ADX\ADXFactory;
+use Kensho\Chart\Indicator\ADX\ADXFactory;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 

@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Kensho\Indicators\Indicator\ADX;
+namespace Kensho\Chart\Indicator\ADX;
 
-use Kensho\Indicators\Indicator\WSMA\WSMA;
+use Kensho\Chart\Indicator\WSMA\WSMA;
 
 final readonly class ADXFactory implements ADXFactoryInterface
 {

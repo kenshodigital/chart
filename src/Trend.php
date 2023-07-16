@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Kensho\Indicators;
+namespace Kensho\Chart;
 
 final readonly class Trend
 {
