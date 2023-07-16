@@ -3,6 +3,17 @@
     "description": "Calculates indicators for technical chart analysis.",
     "type":        "library",
     "license":     "MIT",
+    "keywords":
+    [
+        "technical indicators",
+        "technical analysis",
+        "chart analysis",
+        "stocks",
+        "stock prices",
+        "stock price analysis",
+        "stock chart analysis",
+        "stock market"
+    ],
     "support":
     {
         "source": "https://github.com/kenshodigital/chart",
