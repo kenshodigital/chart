@@ -122,20 +122,21 @@ final readonly class Chart implements ChartInterface
         $result = [];
 
         foreach ($this->candles as $date => $candle) {
-            $close      = $candle->close;
-            $SMAResult  = $SMA->calculate($close);
-            $SMARounded = $this->round($SMAResult);
-            $EMAResult  = $EMA->calculate($close);
-            $EMARounded = $this->round($EMAResult);
-            $DMp        = $candle->DMp;
-            $DMm        = $candle->DMm;
-            $TR         = $candle->TR;
-            $DIResult   = $DI->calculate($DMp, $DMm, $TR);
-            $DIpResult  = $DIResult->DIp;
-            $DIpRounded = $this->round($DIpResult);
-            $DImResult  = $DIResult->DIm;
-            $DImRounded = $this->round($DImResult);
-            $ADXRounded = null;
+            $close        = $candle->close;
+            $closeRounded = $this->round($close);
+            $SMAResult    = $SMA->calculate($close);
+            $SMARounded   = $this->round($SMAResult);
+            $EMAResult    = $EMA->calculate($close);
+            $EMARounded   = $this->round($EMAResult);
+            $DMp          = $candle->DMp;
+            $DMm          = $candle->DMm;
+            $TR           = $candle->TR;
+            $DIResult     = $DI->calculate($DMp, $DMm, $TR);
+            $DIpResult    = $DIResult->DIp;
+            $DIpRounded   = $this->round($DIpResult);
+            $DImResult    = $DIResult->DIm;
+            $DImRounded   = $this->round($DImResult);
+            $ADXRounded   = null;
 
             if ($DIpResult !== null && $DImResult !== null) {
                 $ADXResult  = $ADX->calculate($DIpResult, $DImResult);
@@ -143,6 +144,7 @@ final readonly class Chart implements ChartInterface
             }
 
             $result[$date] = new Trend(
+                $closeRounded,
                 $SMARounded,
                 $EMARounded,
                 $DIpRounded,

@@ -8,6 +8,7 @@ namespace Kensho\Chart;
 final readonly class Trend
 {
     public function __construct(
+        public string|null $close,
         public string|null $SMA,
         public string|null $EMA,
         public string|null $DIp,
