@@ -17,7 +17,7 @@ The library assumes a basic understanding of [technical analysis][2] and how to 
 ## Installation
 
 ```shell
-composer require kenshodigital/chart ^2.0
+composer require kenshodigital/chart ^2.1
 ```
 
 ## Usage
