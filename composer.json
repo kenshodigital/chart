@@ -54,7 +54,7 @@
     "scripts": {
         "phpstan":
         [
-            "phpstan"
+            "phpstan --memory-limit=-1"
         ],
         "phpunit":
         [
