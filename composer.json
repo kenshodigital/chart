@@ -5,14 +5,18 @@
     "license":     "MIT",
     "keywords":
     [
-        "technical indicators",
-        "technical analysis",
+        "chart",
         "chart analysis",
-        "stocks",
-        "stock prices",
-        "stock price analysis",
+        "stock",
+        "stock chart",
         "stock chart analysis",
-        "stock market"
+        "stock market",
+        "stock price",
+        "stock price analysis",
+        "technical analysis",
+        "technical indicator",
+        "trend",
+        "trend analysis"
     ],
     "support":
     {
@@ -22,8 +26,7 @@
     "authors":
     [
         {
-            "name":  "Jens Scherbl",
-            "email": "jens@kensho.digital"
+            "name": "Jens Scherbl"
         }
     ],
     "autoload":
