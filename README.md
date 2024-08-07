@@ -4,7 +4,7 @@ Calculates [indicators][1] for [technical chart analysis][2] in [PHP][3].
 
 ## General
 
-- [PHP 8.2][4]
+- [PHP 8.3][4]
 - Minimal dependencies. 
 - Uses [brick/math][5] for arbitrary precision numbers.
 - Avoids redundant calculations and keeps the overall complexity low.
@@ -17,7 +17,7 @@ The library assumes a basic understanding of [technical analysis][2] and how to 
 ## Installation
 
 ```shell
-composer require kenshodigital/chart ^2.1
+composer require kenshodigital/chart ^3.0
 ```
 
 ## Usage
@@ -176,7 +176,7 @@ $result    = $chart->getTrend($SMAPeriod, $EMAPeriod);
  [1]: https://en.wikipedia.org/wiki/Technical_indicator
  [2]: https://en.wikipedia.org/wiki/Technical_analysis
  [3]: https://www.php.net
- [4]: https://www.php.net/releases/8.2/en.php
+ [4]: https://www.php.net/releases/8.3/en.php
  [5]: https://github.com/brick/math
  [6]: https://github.com/bennycode/trading-signals
  [7]: https://www.alphavantage.co
