@@ -47,6 +47,7 @@
     "require":
     {
         "php":        "^8.3",
+        "ext-bcmath": "*",
         "brick/math": "^0.12"
     },
     "require-dev":
