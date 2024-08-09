@@ -2,23 +2,16 @@
 
 namespace Kensho\Chart\Indicator\ADX;
 
-use Brick\Math\BigDecimal;
-use Brick\Math\Exception\MathException;
-use Kensho\Chart\Indicator\PrecisionTrait;
 use Kensho\Chart\Indicator\WSMA\WSMAInterface;
+use Kensho\Chart\Number;
 
 final readonly class ADX implements ADXInterface
 {
-    use PrecisionTrait;
-
     public function __construct(
         private WSMAInterface $WSMA,
     ) {}
 
-    /**
-     * @throws MathException
-     */
-    public function calculate(BigDecimal $DIp, BigDecimal $DIm): BigDecimal|null
+    public function calculate(Number $DIp, Number $DIm): Number|null
     {
         /*
          * Calculates the directional movement index (DI).
@@ -28,9 +21,9 @@ final readonly class ADX implements ADXInterface
         $denominator = $DIp->plus($DIm);
 
         if ($denominator->isZero()) {
-            $DX = BigDecimal::zero();
+            $DX = new Number(0);
         } else {
-            $DX = $numerator->dividedBy($denominator, self::SCALE, self::ROUNDING_MODE)->multipliedBy(100);
+            $DX = $numerator->dividedBy($denominator)->multipliedBy(100);
         }
 
         /*

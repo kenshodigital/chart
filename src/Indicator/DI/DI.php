@@ -2,25 +2,18 @@
 
 namespace Kensho\Chart\Indicator\DI;
 
-use Brick\Math\BigDecimal;
-use Brick\Math\Exception\MathException;
-use Kensho\Chart\Indicator\PrecisionTrait;
 use Kensho\Chart\Indicator\WSMA\WSMAInterface;
+use Kensho\Chart\Number;
 
 final readonly class DI implements DIInterface
 {
-    use PrecisionTrait;
-
     public function __construct(
         private WSMAInterface $DMpSMA,
         private WSMAInterface $DMmSMA,
         private WSMAInterface $ATR,
     ) {}
 
-    /**
-     * @throws MathException
-     */
-    public function calculate(BigDecimal $DMp, BigDecimal $DMm, BigDecimal $TR): DIResult
+    public function calculate(Number $DMp, Number $DMm, Number $TR): DIResult
     {
         /*
          * Calculates the smoothed moving averages
@@ -45,11 +38,11 @@ final readonly class DI implements DIInterface
              */
 
             if ($ATR->isZero()) {
-                $DIp = BigDecimal::zero();
-                $DIm = BigDecimal::zero();
+                $DIp = new Number(0);
+                $DIm = new Number(0);
             } else {
-                $DIp = $DMpSMA->dividedBy($ATR, self::SCALE, self::ROUNDING_MODE)->multipliedBy(100);
-                $DIm = $DMmSMA->dividedBy($ATR, self::SCALE, self::ROUNDING_MODE)->multipliedBy(100);
+                $DIp = $DMpSMA->dividedBy($ATR)->multipliedBy(100);
+                $DIm = $DMmSMA->dividedBy($ATR)->multipliedBy(100);
             }
         }
         return new DIResult(

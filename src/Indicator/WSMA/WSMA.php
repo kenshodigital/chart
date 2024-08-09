@@ -2,20 +2,16 @@
 
 namespace Kensho\Chart\Indicator\WSMA;
 
-use Brick\Math\BigDecimal;
-use Brick\Math\Exception\MathException;
 use DomainException;
-use Kensho\Chart\Indicator\PrecisionTrait;
+use Kensho\Chart\Number;
 
 final class WSMA implements WSMAInterface
 {
-    use PrecisionTrait;
-
-    private int             $period;
-    private int             $weightingFactor;
-    private int             $initialDataCount;
-    private BigDecimal      $initialSum;
-    private BigDecimal|null $result;
+    private int         $period;
+    private int         $weightingFactor;
+    private int         $initialDataCount;
+    private Number      $initialSum;
+    private Number|null $result;
 
     public function __construct(int $period)
     {
@@ -28,26 +24,23 @@ final class WSMA implements WSMAInterface
         $this->period           = $period;
         $this->weightingFactor  = $period - 1;
         $this->initialDataCount = 0;
-        $this->initialSum       = BigDecimal::zero();
+        $this->initialSum       = new Number(0);
         $this->result           = null;
     }
 
-    /**
-     * @throws MathException
-     */
-    public function calculate(BigDecimal $value): BigDecimal|null
+    public function calculate(Number $value): Number|null
     {
         if ($this->result === null) {
             $this->initialSum = $this->initialSum->plus($value);
             $this->initialDataCount++;
 
             if ($this->initialDataCount === $this->period) {
-                $this->result = $this->initialSum->dividedBy($this->period, self::SCALE, self::ROUNDING_MODE);
+                $this->result = $this->initialSum->dividedBy($this->period);
             }
         } else {
             $weighted     = $this->result->multipliedBy($this->weightingFactor);
             $sum          = $weighted->plus($value);
-            $this->result = $sum->dividedBy($this->period, self::SCALE, self::ROUNDING_MODE);
+            $this->result = $sum->dividedBy($this->period);
         }
         return $this->result;
     }

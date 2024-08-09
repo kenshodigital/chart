@@ -2,12 +2,12 @@
 
 namespace Kensho\Chart\Indicator\EMA;
 
-use Brick\Math\BigDecimal;
+use Kensho\Chart\Number;
 
 /**
  * Calculates the exponential moving average (EMA).
  */
 interface EMAInterface
 {
-    public function calculate(BigDecimal $value): BigDecimal|null;
+    public function calculate(Number $value): Number|null;
 }

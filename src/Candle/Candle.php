@@ -2,9 +2,8 @@
 
 namespace Kensho\Chart\Candle;
 
-use Brick\Math\BigDecimal;
-use Brick\Math\BigInteger;
 use DomainException;
+use Kensho\Chart\Number;
 
 /**
  * Open price, high price, low price, close price, volume,
@@ -13,14 +12,14 @@ use DomainException;
 final readonly class Candle
 {
     public function __construct(
-        public BigDecimal $open,
-        public BigDecimal $high,
-        public BigDecimal $low,
-        public BigDecimal $close,
-        public BigInteger $volume,
-        public BigDecimal $TR,
-        public BigDecimal $DMp,
-        public BigDecimal $DMm,
+        public Number $open,
+        public Number $high,
+        public Number $low,
+        public Number $close,
+        public Number $volume,
+        public Number $TR,
+        public Number $DMp,
+        public Number $DMm,
     ) {
         if ($open->isNegative()) {
             throw new DomainException(

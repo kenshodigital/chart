@@ -2,12 +2,12 @@
 
 namespace Kensho\Chart\Indicator\DI;
 
-use Brick\Math\BigDecimal;
+use Kensho\Chart\Number;
 
 final readonly class DIResult
 {
     public function __construct(
-        public BigDecimal|null $DIp,
-        public BigDecimal|null $DIm,
+        public Number|null $DIp,
+        public Number|null $DIm,
     ) {}
 }

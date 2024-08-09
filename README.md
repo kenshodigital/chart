@@ -6,7 +6,7 @@ Calculates [indicators][1] for [technical chart analysis][2] in [PHP][3].
 
 - [PHP 8.3][4]
 - Minimal dependencies. 
-- Uses [brick/math][5] for arbitrary precision numbers.
+- Uses [BCMath][5] for arbitrary precision calculations.
 - Avoids redundant calculations and keeps the overall complexity low.
 - Unit- and integration tested against [other libraries][6] and [real-world data][7].
 
@@ -169,15 +169,15 @@ $result    = $chart->getTrend($SMAPeriod, $EMAPeriod);
 
 #### Why are numeric values represented as strings?
 
-> Note about floating-point values: instantiating from a float might be unsafe, as floating-point values are imprecise by design, and could result in a loss of information. Always prefer instantiating from a string, which supports an unlimited number of digits.
+> Floating point numbers have limited precision. [...] So never trust floating number results to the last digit, and do not compare floating point numbers directly for equality. If higher precision is necessary, the arbitrary precision math functions are available.
 >
-> — [brick/math][5]
+> — [php.net][15]
 
  [1]: https://en.wikipedia.org/wiki/Technical_indicator
  [2]: https://en.wikipedia.org/wiki/Technical_analysis
  [3]: https://www.php.net
  [4]: https://www.php.net/releases/8.3/en.php
- [5]: https://github.com/brick/math
+ [5]: https://www.php.net/manual/en/book.bc.php
  [6]: https://github.com/bennycode/trading-signals
  [7]: https://www.alphavantage.co
  [8]: #prepare-chart
@@ -187,3 +187,4 @@ $result    = $chart->getTrend($SMAPeriod, $EMAPeriod);
 [12]: #ema-exponential-moving-average
 [13]: #di---di-positive---negative-directional-indicator
 [14]: #adx-average-directional-index
+[15]: https://www.php.net/manual/en/language.types.float.php

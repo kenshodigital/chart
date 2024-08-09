@@ -2,9 +2,6 @@
 
 namespace Kensho\Chart\Chart;
 
-use Brick\Math\BigDecimal;
-use Brick\Math\Exception\RoundingNecessaryException;
-use Brick\Math\RoundingMode;
 use Kensho\Chart\Candle\Candle;
 use Kensho\Chart\DI;
 use Kensho\Chart\Indicator\ADX\ADXFactoryInterface;
@@ -15,8 +12,7 @@ use Kensho\Chart\Trend;
 
 final readonly class Chart implements ChartInterface
 {
-    private const ROUNDING_MODE = RoundingMode::HALF_UP;
-    private const SCALE         = 4;
+    private const SCALE = 4;
 
     /**
      * @param array<string, Candle> $candles
@@ -29,9 +25,6 @@ final readonly class Chart implements ChartInterface
         private ADXFactoryInterface $ADXFactory,
     ) {}
 
-    /**
-     * @throws RoundingNecessaryException
-     */
     public function getSMA(int $period): array
     {
         $SMA    = $this->SMAFactory::create($period);
@@ -40,14 +33,11 @@ final readonly class Chart implements ChartInterface
         foreach ($this->candles as $date => $candle) {
             $close         = $candle->close;
             $SMAResult     = $SMA->calculate($close);
-            $result[$date] = $this->round($SMAResult);
+            $result[$date] = $SMAResult?->round(self::SCALE);
         }
         return $result;
     }
 
-    /**
-     * @throws RoundingNecessaryException
-     */
     public function getEMA(int $period): array
     {
         $EMA    = $this->EMAFactory::create($period);
@@ -56,14 +46,11 @@ final readonly class Chart implements ChartInterface
         foreach ($this->candles as $date => $candle) {
             $close         = $candle->close;
             $EMAResult     = $EMA->calculate($close);
-            $result[$date] = $this->round($EMAResult);
+            $result[$date] = $EMAResult?->round(self::SCALE);
         }
         return $result;
     }
 
-    /**
-     * @throws RoundingNecessaryException
-     */
     public function getDI(int $period): array
     {
         $DI     = $this->DIFactory::create($period);
@@ -75,17 +62,14 @@ final readonly class Chart implements ChartInterface
             $TR            = $candle->TR;
             $DIResult      = $DI->calculate($DMp, $DMm, $TR);
             $DIpResult     = $DIResult->DIp;
-            $DIpRounded    = $this->round($DIpResult);
+            $DIpRounded    = $DIpResult?->round(self::SCALE);
             $DImResult     = $DIResult->DIm;
-            $DImRounded    = $this->round($DImResult);
+            $DImRounded    = $DImResult?->round(self::SCALE);
             $result[$date] = new DI($DIpRounded, $DImRounded);
         }
         return $result;
     }
 
-    /**
-     * @throws RoundingNecessaryException
-     */
     public function getADX(int $period): array
     {
         $DI     = $this->DIFactory::create($period);
@@ -102,7 +86,7 @@ final readonly class Chart implements ChartInterface
 
             if ($DIpResult !== null && $DImResult !== null) {
                 $ADXResult     = $ADX->calculate($DIpResult, $DImResult);
-                $result[$date] = $this->round($ADXResult);
+                $result[$date] = $ADXResult?->round(self::SCALE);
             } else {
                 $result[$date] = null;
             }
@@ -110,9 +94,6 @@ final readonly class Chart implements ChartInterface
         return $result;
     }
 
-    /**
-     * @throws RoundingNecessaryException
-     */
     public function getTrend(int $SMAPeriod, int $EMAPeriod): array
     {
         $SMA    = $this->SMAFactory::create($SMAPeriod);
@@ -123,24 +104,24 @@ final readonly class Chart implements ChartInterface
 
         foreach ($this->candles as $date => $candle) {
             $close        = $candle->close;
-            $closeRounded = $this->round($close);
+            $closeRounded = $close->round(self::SCALE);
             $SMAResult    = $SMA->calculate($close);
-            $SMARounded   = $this->round($SMAResult);
+            $SMARounded   = $SMAResult?->round(self::SCALE);
             $EMAResult    = $EMA->calculate($close);
-            $EMARounded   = $this->round($EMAResult);
+            $EMARounded   = $EMAResult?->round(self::SCALE);
             $DMp          = $candle->DMp;
             $DMm          = $candle->DMm;
             $TR           = $candle->TR;
             $DIResult     = $DI->calculate($DMp, $DMm, $TR);
             $DIpResult    = $DIResult->DIp;
-            $DIpRounded   = $this->round($DIpResult);
+            $DIpRounded   = $DIpResult?->round(self::SCALE);
             $DImResult    = $DIResult->DIm;
-            $DImRounded   = $this->round($DImResult);
+            $DImRounded   = $DImResult?->round(self::SCALE);
             $ADXRounded   = null;
 
             if ($DIpResult !== null && $DImResult !== null) {
                 $ADXResult  = $ADX->calculate($DIpResult, $DImResult);
-                $ADXRounded = $this->round($ADXResult);
+                $ADXRounded = $ADXResult?->round(self::SCALE);
             }
 
             $result[$date] = new Trend(
@@ -153,13 +134,5 @@ final readonly class Chart implements ChartInterface
             );
         }
         return $result;
-    }
-
-    /**
-     * @throws RoundingNecessaryException
-     */
-    private function round(BigDecimal|null $value): string|null
-    {
-        return $value?->toScale(self::SCALE, self::ROUNDING_MODE)->__toString();
     }
 }

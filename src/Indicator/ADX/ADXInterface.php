@@ -2,12 +2,12 @@
 
 namespace Kensho\Chart\Indicator\ADX;
 
-use Brick\Math\BigDecimal;
+use Kensho\Chart\Number;
 
 /**
  * Calculates the average directional movement index (ADX).
  */
 interface ADXInterface
 {
-    public function calculate(BigDecimal $DIp, BigDecimal $DIm): BigDecimal|null;
+    public function calculate(Number $DIp, Number $DIm): Number|null;
 }

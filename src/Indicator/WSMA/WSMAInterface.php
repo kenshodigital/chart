@@ -2,12 +2,12 @@
 
 namespace Kensho\Chart\Indicator\WSMA;
 
-use Brick\Math\BigDecimal;
+use Kensho\Chart\Number;
 
 /**
  * Calculates Wilder’s smoothed moving average.
  */
 interface WSMAInterface
 {
-    public function calculate(BigDecimal $value): BigDecimal|null;
+    public function calculate(Number $value): Number|null;
 }

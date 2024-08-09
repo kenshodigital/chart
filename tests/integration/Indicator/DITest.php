@@ -2,10 +2,8 @@
 
 namespace Kensho\Chart\Tests\Integration\Indicator;
 
-use Brick\Math\BigDecimal;
-use Brick\Math\Exception\MathException;
-use Brick\Math\RoundingMode;
 use Kensho\Chart\Indicator\DI\DIFactory;
+use Kensho\Chart\Number;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
@@ -14,8 +12,6 @@ final class DITest extends TestCase
     /**
      * @param array<string, array<string, string>>      $values
      * @param array<string, array<string, string|null>> $expected
-     *
-     * @throws MathException
      */
     #[DataProvider('provideData')]
     public function testCalculate(int $period, array $values, array $expected): void
@@ -28,12 +24,12 @@ final class DITest extends TestCase
             'DMm' => $DMm,
             'TR'  => $TR,
         ]) {
-            $DMp           = BigDecimal::of($DMp);
-            $DMm           = BigDecimal::of($DMm);
-            $TR            = BigDecimal::of($TR);
+            $DMp           = new Number($DMp);
+            $DMm           = new Number($DMm);
+            $TR            = new Number($TR);
             $result        = $instance->calculate($DMp, $DMm, $TR);
-            $DIp           = $result->DIp?->toScale(4, RoundingMode::HALF_UP)->__toString();
-            $DIm           = $result->DIm?->toScale(4, RoundingMode::HALF_UP)->__toString();
+            $DIp           = $result->DIp?->round(4);
+            $DIm           = $result->DIm?->round(4);
             $actual[$date] = [
                 'DIp' => $DIp,
                 'DIm' => $DIm,

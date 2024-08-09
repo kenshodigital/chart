@@ -2,23 +2,16 @@
 
 namespace Kensho\Chart\Indicator\EMA;
 
-use Brick\Math\BigDecimal;
-use Brick\Math\Exception\MathException;
 use DomainException;
-use Kensho\Chart\Indicator\PrecisionTrait;
+use Kensho\Chart\Number;
 
 final class EMA implements EMAInterface
 {
-    use PrecisionTrait;
+    private int         $period;
+    private Number      $weightingFactor;
+    private int         $dataCount;
+    private Number|null $result;
 
-    private int             $period;
-    private BigDecimal      $weightingFactor;
-    private int             $dataCount;
-    private BigDecimal|null $result;
-
-    /**
-     * @throws MathException
-     */
     public function __construct(int $period)
     {
         if ($period < 2) {
@@ -28,15 +21,12 @@ final class EMA implements EMAInterface
         }
 
         $this->period          = $period;
-        $this->weightingFactor = BigDecimal::of(2)->dividedBy($period + 1, self::SCALE, self::ROUNDING_MODE);
+        $this->weightingFactor = (new Number(2))->dividedBy($period + 1);
         $this->dataCount       = 0;
         $this->result          = null;
     }
 
-    /**
-     * @throws MathException
-     */
-    public function calculate(BigDecimal $value): BigDecimal|null
+    public function calculate(Number $value): Number|null
     {
         if ($this->result === null) {
             $this->result = $value;

@@ -2,22 +2,18 @@
 
 namespace Kensho\Chart\Indicator\SMA;
 
-use Brick\Math\BigDecimal;
-use Brick\Math\Exception\MathException;
 use DomainException;
-use Kensho\Chart\Indicator\PrecisionTrait;
+use Kensho\Chart\Number;
 
 final class SMA implements SMAInterface
 {
-    use PrecisionTrait;
-
-    private int        $period;
+    private int    $period;
     /**
-     * @var array<BigDecimal>
+     * @var array<Number>
      */
-    private array      $buffer;
-    private int        $bufferSize;
-    private BigDecimal $sum;
+    private array  $buffer;
+    private int    $bufferSize;
+    private Number $sum;
 
     public function __construct(int $period)
     {
@@ -30,13 +26,10 @@ final class SMA implements SMAInterface
         $this->period     = $period;
         $this->buffer     = [];
         $this->bufferSize = 0;
-        $this->sum        = BigDecimal::zero();
+        $this->sum        = new Number(0);
     }
 
-    /**
-     * @throws MathException
-     */
-    public function calculate(BigDecimal $value): BigDecimal|null
+    public function calculate(Number $value): Number|null
     {
         $this->buffer[] = $value;
         $this->sum      = $this->sum->plus($value);
@@ -50,6 +43,6 @@ final class SMA implements SMAInterface
             $this->sum = $this->sum->minus($oldest);
             $this->bufferSize--;
         }
-        return $this->sum->dividedBy($this->period, self::SCALE, self::ROUNDING_MODE);
+        return $this->sum->dividedBy($this->period);
     }
 }

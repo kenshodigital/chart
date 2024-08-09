@@ -2,15 +2,10 @@
 
 namespace Kensho\Chart\Candle;
 
-use Brick\Math\BigDecimal;
-use Brick\Math\BigInteger;
-use Brick\Math\Exception\MathException;
+use Kensho\Chart\Number;
 
 final readonly class CandleFactory implements CandleFactoryInterface
 {
-    /**
-     * @throws MathException
-     */
     public static function create(
         string      $open,
         string      $high,
@@ -19,15 +14,15 @@ final readonly class CandleFactory implements CandleFactoryInterface
         string      $volume,
         Candle|null $previous,
     ): Candle {
-        $open    = BigDecimal::of($open);
-        $high    = BigDecimal::of($high);
-        $low     = BigDecimal::of($low);
-        $close   = BigDecimal::of($close);
-        $volume  = BigInteger::of($volume);
+        $open    = new Number($open);
+        $high    = new Number($high);
+        $low     = new Number($low);
+        $close   = new Number($close);
+        $volume  = new Number($volume);
         $highLow = $high->minus($low);
         $TR      = $highLow;
-        $DMp     = BigDecimal::zero();
-        $DMm     = BigDecimal::zero();
+        $DMp     = new Number(0);
+        $DMm     = new Number(0);
 
         if ($previous !== null) {
 
@@ -35,11 +30,17 @@ final readonly class CandleFactory implements CandleFactoryInterface
              * Calculates true range (TR).
              */
 
-            $highClose     = $high->minus($previous->close);
-            $absHighClose  = $highClose->abs();
-            $lowClose      = $low->minus($previous->close);
-            $absLowClose   = $lowClose->abs();
-            $TR            = BigDecimal::max($highLow, $absHighClose, $absLowClose);
+            $highClose    = $high->minus($previous->close);
+            $absHighClose = $highClose->abs();
+            $lowClose     = $low->minus($previous->close);
+            $absLowClose  = $lowClose->abs();
+
+            if ($absHighClose->isGreaterThan($TR)) {
+                $TR = $absHighClose;
+            }
+            if ($absLowClose->isGreaterThan($TR)) {
+                $TR = $absLowClose;
+            }
 
             /*
              * Calculates directional movements (+DM & -DM).

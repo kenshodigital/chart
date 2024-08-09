@@ -2,8 +2,6 @@
 
 namespace Kensho\Chart\Tests\Unit\Candle;
 
-use Brick\Math\Exception\MathException;
-use Brick\Math\RoundingMode;
 use Kensho\Chart\Candle\CandleFactory;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
@@ -13,8 +11,6 @@ final class CandleFactoryTest extends TestCase
     /**
      * @param array<string, string> $values
      * @param array<string, string> $expected
-     *
-     * @throws MathException
      */
     #[DataProvider('provideData')]
     public function testCalculate(array $values, array $expected): void
@@ -31,9 +27,9 @@ final class CandleFactoryTest extends TestCase
         ]) {
             $result        = CandleFactory::create($open, $high, $low, $close, $volume, $previous);
             $previous      = $result;
-            $TR            = $result->TR->toScale(4, RoundingMode::HALF_UP)->__toString();
-            $DMp           = $result->DMp->toScale(4, RoundingMode::HALF_UP)->__toString();
-            $DMm           = $result->DMm->toScale(4, RoundingMode::HALF_UP)->__toString();
+            $TR            = $result->TR->round(4);
+            $DMp           = $result->DMp->round(4);
+            $DMm           = $result->DMm->round(4);
             $actual[$date] = [
                 'TR'  => $TR,
                 'DMp' => $DMp,

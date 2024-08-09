@@ -2,12 +2,10 @@
 
 namespace Kensho\Chart\Tests\Unit\Indicator;
 
-use Brick\Math\BigDecimal;
-use Brick\Math\Exception\MathException;
-use Brick\Math\RoundingMode;
 use DomainException;
 use Kensho\Chart\Indicator\SMA\SMA;
 use Kensho\Chart\Indicator\SMA\SMAInterface;
+use Kensho\Chart\Number;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
@@ -26,8 +24,6 @@ final class SMATest extends TestCase
     /**
      * @param array<string, string>      $values
      * @param array<string, string|null> $expected
-     *
-     * @throws MathException
      */
     #[DataProvider('provideData')]
     public function testCalculate(int $period, array $values, array $expected): void
@@ -36,12 +32,7 @@ final class SMATest extends TestCase
         $actual   = [];
 
         foreach ($values as $date => $value) {
-            $actual[$date] = $instance->calculate(
-                BigDecimal::of($value),
-            )?->toScale(
-                4,
-                RoundingMode::HALF_UP,
-            )->__toString();
+            $actual[$date] = $instance->calculate(new Number($value))?->round(4);
         }
         $this->assertSame($expected, $actual);
     }

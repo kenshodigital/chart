@@ -2,12 +2,12 @@
 
 namespace Kensho\Chart\Indicator\DI;
 
-use Brick\Math\BigDecimal;
+use Kensho\Chart\Number;
 
 /**
  * Calculates the directional indicators (+DI & -DI).
  */
 interface DIInterface
 {
-    public function calculate(BigDecimal $DMp, BigDecimal $DMm, BigDecimal $TR): DIResult;
+    public function calculate(Number $DMp, Number $DMm, Number $TR): DIResult;
 }

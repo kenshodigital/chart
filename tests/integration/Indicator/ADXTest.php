@@ -2,10 +2,8 @@
 
 namespace Kensho\Chart\Tests\Integration\Indicator;
 
-use Brick\Math\BigDecimal;
-use Brick\Math\Exception\MathException;
-use Brick\Math\RoundingMode;
 use Kensho\Chart\Indicator\ADX\ADXFactory;
+use Kensho\Chart\Number;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
@@ -14,8 +12,6 @@ final class ADXTest extends TestCase
     /**
      * @param array<string, array<string, string|null>> $values
      * @param array<string, string|null>                $expected
-     *
-     * @throws MathException
      */
     #[DataProvider('provideData')]
     public function testCalculate(int $period, array $values, array $expected): void
@@ -29,12 +25,9 @@ final class ADXTest extends TestCase
         ]) {
             if ($DIp !== null && $DIm !== null) {
                 $actual[$date] = $instance->calculate(
-                    BigDecimal::of($DIp),
-                    BigDecimal::of($DIm),
-                )?->toScale(
-                    4,
-                    RoundingMode::HALF_UP,
-                )->__toString();
+                    new Number($DIp),
+                    new Number($DIm)
+                )?->round(4);
             } else {
                 $actual[$date] = null;
             }

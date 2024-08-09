@@ -2,19 +2,14 @@
 
 namespace Kensho\Chart\Tests\Unit\Candle;
 
-use Brick\Math\BigDecimal;
-use Brick\Math\BigInteger;
-use Brick\Math\Exception\MathException;
 use DomainException;
 use Kensho\Chart\Candle\Candle;
+use Kensho\Chart\Number;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 final class CandleTest extends TestCase
 {
-    /**
-     * @throws MathException
-     */
     #[DataProvider('provideInvalidValues')]
     public function testInvalidValues(
         string $open,
@@ -26,22 +21,19 @@ final class CandleTest extends TestCase
         $this->expectException(DomainException::class);
 
         $actual = new Candle(
-            BigDecimal::of($open),
-            BigDecimal::of($high),
-            BigDecimal::of($low),
-            BigDecimal::of($close),
-            BigInteger::of($volume),
-            BigDecimal::zero(),
-            BigDecimal::zero(),
-            BigDecimal::zero(),
+            new Number($open),
+            new Number($high),
+            new Number($low),
+            new Number($close),
+            new Number($volume),
+            new Number(0),
+            new Number(0),
+            new Number(0),
         );
 
         $this->assertInstanceOf(Candle::class, $actual);
     }
 
-    /**
-     * @throws MathException
-     */
     #[DataProvider('provideValidValues')]
     public function testValidValues(
         string $open,
@@ -51,14 +43,14 @@ final class CandleTest extends TestCase
         string $volume,
     ): void {
         $actual = new Candle(
-            BigDecimal::of($open),
-            BigDecimal::of($high),
-            BigDecimal::of($low),
-            BigDecimal::of($close),
-            BigInteger::of($volume),
-            BigDecimal::zero(),
-            BigDecimal::zero(),
-            BigDecimal::zero(),
+            new Number($open),
+            new Number($high),
+            new Number($low),
+            new Number($close),
+            new Number($volume),
+            new Number(0),
+            new Number(0),
+            new Number(0),
         );
 
         $this->assertInstanceOf(Candle::class, $actual);

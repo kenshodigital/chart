@@ -2,7 +2,6 @@
 
 namespace Kensho\Chart\Tests\Integration\Chart;
 
-use Brick\Math\Exception\MathException;
 use Kensho\Chart\Chart\ChartFactory;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
@@ -12,8 +11,6 @@ final class ChartTest extends TestCase
     /**
      * @param array<string, array<string, string>> $values
      * @param array<string, string|null>           $expected
-     *
-     * @throws MathException
      */
     #[DataProvider('provideDataSMA')]
     public function testGetSMA(int $period, array $values, array $expected): void
@@ -27,8 +24,6 @@ final class ChartTest extends TestCase
     /**
      * @param array<string, array<string, string>> $values
      * @param array<string, string|null>           $expected
-     *
-     * @throws MathException
      */
     #[DataProvider('provideDataEMA')]
     public function testGetEMA(int $period, array $values, array $expected): void
@@ -42,8 +37,6 @@ final class ChartTest extends TestCase
     /**
      * @param array<string, array<string, string>>      $values
      * @param array<string, array<string, string|null>> $expected
-     *
-     * @throws MathException
      */
     #[DataProvider('provideDataDI')]
     public function testGetDI(int $period, array $values, array $expected): void
@@ -65,8 +58,6 @@ final class ChartTest extends TestCase
     /**
      * @param array<string, array<string, string>> $values
      * @param array<string, string|null>           $expected
-     *
-     * @throws MathException
      */
     #[DataProvider('provideDataADX')]
     public function testGetADX(int $period, array $values, array $expected): void
@@ -80,8 +71,6 @@ final class ChartTest extends TestCase
     /**
      * @param array<string, array<string, string>>      $values
      * @param array<string, array<string, string|null>> $expected
-     *
-     * @throws MathException
      */
     #[DataProvider('provideDataTrend')]
     public function testGetTrend(int $SMAperiod, int $EMAperiod, array $values, array $expected): void
