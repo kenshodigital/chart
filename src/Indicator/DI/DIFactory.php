@@ -8,10 +8,10 @@ final readonly class DIFactory implements DIFactoryInterface
 {
     public static function create(int $period): DIInterface
     {
-        return new DI(
-            new WSMA($period),
-            new WSMA($period),
-            new WSMA($period),
-        );
+        $DMpSMA = new WSMA(period: $period);
+        $DMmSMA = new WSMA(period: $period);
+        $ATR    = new WSMA(period: $period);
+
+        return new DI(DMpSMA: $DMpSMA, DMmSMA: $DMmSMA, ATR: $ATR);
     }
 }

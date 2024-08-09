@@ -6,6 +6,6 @@ final readonly class EMAFactory implements EMAFactoryInterface
 {
     public static function create(int $period): EMAInterface
     {
-        return new EMA($period);
+        return new EMA(period: $period);
     }
 }

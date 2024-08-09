@@ -6,6 +6,6 @@ final readonly class SMAFactory implements SMAFactoryInterface
 {
     public static function create(int $period): SMAInterface
     {
-        return new SMA($period);
+        return new SMA(period: $period);
     }
 }

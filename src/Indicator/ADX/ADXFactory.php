@@ -8,8 +8,8 @@ final readonly class ADXFactory implements ADXFactoryInterface
 {
     public static function create(int $period): ADXInterface
     {
-        return new ADX(
-            new WSMA($period),
-        );
+        $WSMA = new WSMA(period: $period);
+
+        return new ADX(WSMA: $WSMA);
     }
 }

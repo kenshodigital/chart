@@ -18,12 +18,12 @@ final readonly class ChartFactory implements ChartFactoryInterface
     public static function bootstrap(array $data): Chart
     {
         return (new ChartFactory(
-            new CandleFactory,
-            new SMAFactory,
-            new EMAFactory,
-            new DIFactory,
-            new ADXFactory,
-        ))->create($data);
+            candleFactory: new CandleFactory(),
+            SMAFactory:    new SMAFactory(),
+            EMAFactory:    new EMAFactory(),
+            DIFactory:     new DIFactory(),
+            ADXFactory:    new ADXFactory(),
+        ))->create(data: $data);
     }
 
     public function __construct(
@@ -46,15 +46,15 @@ final readonly class ChartFactory implements ChartFactoryInterface
             'close'  => $close,
             'volume' => $volume,
         ]) {
-            $candles[$date] = $this->candleFactory::create($open, $high, $low, $close, $volume, $previous);
+            $candles[$date] = $this->candleFactory::create(open: $open, high: $high, low: $low, close: $close, volume: $volume, previous: $previous);
             $previous       = $candles[$date];
         }
         return new Chart(
-            $candles,
-            $this->SMAFactory,
-            $this->EMAFactory,
-            $this->DIFactory,
-            $this->ADXFactory,
+            candles:    $candles,
+            SMAFactory: $this->SMAFactory,
+            EMAFactory: $this->EMAFactory,
+            DIFactory:  $this->DIFactory,
+            ADXFactory: $this->ADXFactory,
         );
     }
 }

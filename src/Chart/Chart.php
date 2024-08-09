@@ -12,7 +12,7 @@ use Kensho\Chart\Trend;
 
 final readonly class Chart implements ChartInterface
 {
-    private const SCALE = 4;
+    private const int SCALE = 4;
 
     /**
      * @param array<string, Candle> $candles
@@ -27,66 +27,66 @@ final readonly class Chart implements ChartInterface
 
     public function getSMA(int $period): array
     {
-        $SMA    = $this->SMAFactory::create($period);
+        $SMA    = $this->SMAFactory::create(period: $period);
         $result = [];
 
         foreach ($this->candles as $date => $candle) {
             $close         = $candle->close;
-            $SMAResult     = $SMA->calculate($close);
-            $result[$date] = $SMAResult?->round(self::SCALE);
+            $SMAResult     = $SMA->calculate(value: $close);
+            $result[$date] = $SMAResult?->round(scale: self::SCALE);
         }
         return $result;
     }
 
     public function getEMA(int $period): array
     {
-        $EMA    = $this->EMAFactory::create($period);
+        $EMA    = $this->EMAFactory::create(period: $period);
         $result = [];
 
         foreach ($this->candles as $date => $candle) {
             $close         = $candle->close;
-            $EMAResult     = $EMA->calculate($close);
-            $result[$date] = $EMAResult?->round(self::SCALE);
+            $EMAResult     = $EMA->calculate(value: $close);
+            $result[$date] = $EMAResult?->round(scale: self::SCALE);
         }
         return $result;
     }
 
     public function getDI(int $period): array
     {
-        $DI     = $this->DIFactory::create($period);
+        $DI     = $this->DIFactory::create(period: $period);
         $result = [];
 
         foreach ($this->candles as $date => $candle) {
             $DMp           = $candle->DMp;
             $DMm           = $candle->DMm;
             $TR            = $candle->TR;
-            $DIResult      = $DI->calculate($DMp, $DMm, $TR);
+            $DIResult      = $DI->calculate(DMp: $DMp, DMm: $DMm, TR: $TR);
             $DIpResult     = $DIResult->DIp;
-            $DIpRounded    = $DIpResult?->round(self::SCALE);
+            $DIpRounded    = $DIpResult?->round(scale: self::SCALE);
             $DImResult     = $DIResult->DIm;
-            $DImRounded    = $DImResult?->round(self::SCALE);
-            $result[$date] = new DI($DIpRounded, $DImRounded);
+            $DImRounded    = $DImResult?->round(scale: self::SCALE);
+            $result[$date] = new DI(DIp: $DIpRounded, DIm: $DImRounded);
         }
         return $result;
     }
 
     public function getADX(int $period): array
     {
-        $DI     = $this->DIFactory::create($period);
-        $ADX    = $this->ADXFactory::create($period);
+        $DI     = $this->DIFactory::create(period: $period);
+        $ADX    = $this->ADXFactory::create(period: $period);
         $result = [];
 
         foreach ($this->candles as $date => $candle) {
             $DMp       = $candle->DMp;
             $DMm       = $candle->DMm;
             $TR        = $candle->TR;
-            $DIResult  = $DI->calculate($DMp, $DMm, $TR);
+            $DIResult  = $DI->calculate(DMp: $DMp, DMm: $DMm, TR: $TR);
             $DIpResult = $DIResult->DIp;
             $DImResult = $DIResult->DIm;
 
             if ($DIpResult !== null && $DImResult !== null) {
-                $ADXResult     = $ADX->calculate($DIpResult, $DImResult);
-                $result[$date] = $ADXResult?->round(self::SCALE);
+                $ADXResult     = $ADX->calculate(DIp: $DIpResult, DIm: $DImResult);
+                $result[$date] = $ADXResult?->round(scale: self::SCALE);
             } else {
                 $result[$date] = null;
             }
@@ -96,41 +96,41 @@ final readonly class Chart implements ChartInterface
 
     public function getTrend(int $SMAPeriod, int $EMAPeriod): array
     {
-        $SMA    = $this->SMAFactory::create($SMAPeriod);
-        $EMA    = $this->EMAFactory::create($EMAPeriod);
-        $DI     = $this->DIFactory::create($EMAPeriod);
-        $ADX    = $this->ADXFactory::create($EMAPeriod);
+        $SMA    = $this->SMAFactory::create(period: $SMAPeriod);
+        $EMA    = $this->EMAFactory::create(period: $EMAPeriod);
+        $DI     = $this->DIFactory::create(period: $EMAPeriod);
+        $ADX    = $this->ADXFactory::create(period: $EMAPeriod);
         $result = [];
 
         foreach ($this->candles as $date => $candle) {
             $close        = $candle->close;
-            $closeRounded = $close->round(self::SCALE);
-            $SMAResult    = $SMA->calculate($close);
-            $SMARounded   = $SMAResult?->round(self::SCALE);
-            $EMAResult    = $EMA->calculate($close);
-            $EMARounded   = $EMAResult?->round(self::SCALE);
+            $closeRounded = $close->round(scale: self::SCALE);
+            $SMAResult    = $SMA->calculate(value: $close);
+            $SMARounded   = $SMAResult?->round(scale: self::SCALE);
+            $EMAResult    = $EMA->calculate(value: $close);
+            $EMARounded   = $EMAResult?->round(scale: self::SCALE);
             $DMp          = $candle->DMp;
             $DMm          = $candle->DMm;
             $TR           = $candle->TR;
-            $DIResult     = $DI->calculate($DMp, $DMm, $TR);
+            $DIResult     = $DI->calculate(DMp: $DMp, DMm: $DMm, TR: $TR);
             $DIpResult    = $DIResult->DIp;
-            $DIpRounded   = $DIpResult?->round(self::SCALE);
+            $DIpRounded   = $DIpResult?->round(scale: self::SCALE);
             $DImResult    = $DIResult->DIm;
-            $DImRounded   = $DImResult?->round(self::SCALE);
+            $DImRounded   = $DImResult?->round(scale: self::SCALE);
             $ADXRounded   = null;
 
             if ($DIpResult !== null && $DImResult !== null) {
-                $ADXResult  = $ADX->calculate($DIpResult, $DImResult);
-                $ADXRounded = $ADXResult?->round(self::SCALE);
+                $ADXResult  = $ADX->calculate(DIp: $DIpResult, DIm: $DImResult);
+                $ADXRounded = $ADXResult?->round(scale: self::SCALE);
             }
 
             $result[$date] = new Trend(
-                $closeRounded,
-                $SMARounded,
-                $EMARounded,
-                $DIpRounded,
-                $DImRounded,
-                $ADXRounded,
+                close: $closeRounded,
+                SMA:   $SMARounded,
+                EMA:   $EMARounded,
+                DIp:   $DIpRounded,
+                DIm:   $DImRounded,
+                ADX:   $ADXRounded,
             );
         }
         return $result;

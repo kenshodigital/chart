@@ -7,21 +7,21 @@ use Kensho\Chart\Number;
 
 final class EMA implements EMAInterface
 {
-    private int         $period;
-    private Number      $weightingFactor;
-    private int         $dataCount;
+    private readonly int $period;
+    private readonly Number $weightingFactor;
+    private int $dataCount;
     private Number|null $result;
 
     public function __construct(int $period)
     {
         if ($period < 2) {
             throw new DomainException(
-                'Invalid period. Period must be higher than `1` for EMA calculation.'
+                message: 'Invalid period. Period must be higher than `1` for EMA calculation.'
             );
         }
 
         $this->period          = $period;
-        $this->weightingFactor = (new Number(2))->dividedBy($period + 1);
+        $this->weightingFactor = (new Number(value: 2))->dividedBy(value: $period + 1);
         $this->dataCount       = 0;
         $this->result          = null;
     }
@@ -31,9 +31,9 @@ final class EMA implements EMAInterface
         if ($this->result === null) {
             $this->result = $value;
         } else {
-            $value        = $value->minus($this->result);
-            $weighted     = $value->multipliedBy($this->weightingFactor);
-            $this->result = $this->result->plus($weighted);
+            $value        = $value->minus(value: $this->result);
+            $weighted     = $value->multipliedBy(value: $this->weightingFactor);
+            $this->result = $this->result->plus(value: $weighted);
         }
         if (++$this->dataCount < $this->period) {
             return null;

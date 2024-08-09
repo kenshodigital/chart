@@ -14,15 +14,15 @@ final readonly class CandleFactory implements CandleFactoryInterface
         string      $volume,
         Candle|null $previous,
     ): Candle {
-        $open    = new Number($open);
-        $high    = new Number($high);
-        $low     = new Number($low);
-        $close   = new Number($close);
-        $volume  = new Number($volume);
-        $highLow = $high->minus($low);
+        $open    = new Number(value: $open);
+        $high    = new Number(value: $high);
+        $low     = new Number(value: $low);
+        $close   = new Number(value: $close);
+        $volume  = new Number(value: $volume);
+        $highLow = $high->minus(value: $low);
         $TR      = $highLow;
-        $DMp     = new Number(0);
-        $DMm     = new Number(0);
+        $DMp     = new Number(value: 0);
+        $DMm     = new Number(value: 0);
 
         if ($previous !== null) {
 
@@ -30,15 +30,15 @@ final readonly class CandleFactory implements CandleFactoryInterface
              * Calculates true range (TR).
              */
 
-            $highClose    = $high->minus($previous->close);
+            $highClose    = $high->minus(value: $previous->close);
             $absHighClose = $highClose->abs();
-            $lowClose     = $low->minus($previous->close);
+            $lowClose     = $low->minus(value: $previous->close);
             $absLowClose  = $lowClose->abs();
 
-            if ($absHighClose->isGreaterThan($TR)) {
+            if ($absHighClose->isGreaterThan(value: $TR)) {
                 $TR = $absHighClose;
             }
-            if ($absLowClose->isGreaterThan($TR)) {
+            if ($absLowClose->isGreaterThan(value: $TR)) {
                 $TR = $absLowClose;
             }
 
@@ -46,25 +46,25 @@ final readonly class CandleFactory implements CandleFactoryInterface
              * Calculates directional movements (+DM & -DM).
              */
 
-            $upMove   = $high->minus($previous->high);
-            $downMove = $previous->low->minus($low);
+            $upMove   = $high->minus(value: $previous->high);
+            $downMove = $previous->low->minus(value: $low);
 
-            if ($upMove->isPositive() && $upMove->isGreaterThan($downMove)) {
+            if ($upMove->isPositive() && $upMove->isGreaterThan(value: $downMove)) {
                 $DMp = $upMove;
             }
-            if ($downMove->isPositive() && $downMove->isGreaterThan($upMove)) {
+            if ($downMove->isPositive() && $downMove->isGreaterThan(value: $upMove)) {
                 $DMm = $downMove;
             }
         }
         return new Candle(
-            $open,
-            $high,
-            $low,
-            $close,
-            $volume,
-            $TR,
-            $DMp,
-            $DMm,
+            open:   $open,
+            high:   $high,
+            low:    $low,
+            close:  $close,
+            volume: $volume,
+            TR:     $TR,
+            DMp:    $DMp,
+            DMm:    $DMm,
         );
     }
 }

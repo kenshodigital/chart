@@ -17,19 +17,19 @@ final readonly class ADX implements ADXInterface
          * Calculates the directional movement index (DI).
          */
 
-        $numerator   = $DIp->minus($DIm)->abs();
-        $denominator = $DIp->plus($DIm);
+        $numerator   = $DIp->minus(value: $DIm)->abs();
+        $denominator = $DIp->plus(value: $DIm);
 
         if ($denominator->isZero()) {
-            $DX = new Number(0);
+            $DX = new Number(value: 0);
         } else {
-            $DX = $numerator->dividedBy($denominator)->multipliedBy(100);
+            $DX = $numerator->dividedBy(value: $denominator)->multipliedBy(value: 100);
         }
 
         /*
          * Calculates the average directional movement index (ADX).
          */
 
-        return $this->WSMA->calculate($DX);
+        return $this->WSMA->calculate(value: $DX);
     }
 }

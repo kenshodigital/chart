@@ -20,14 +20,14 @@ final readonly class DI implements DIInterface
          * of directional movements (+DM & -DM).
          */
 
-        $DMpSMA = $this->DMpSMA->calculate($DMp);
-        $DMmSMA = $this->DMmSMA->calculate($DMm);
+        $DMpSMA = $this->DMpSMA->calculate(value: $DMp);
+        $DMmSMA = $this->DMmSMA->calculate(value: $DMm);
 
         /*
          * Calculates the average true range (ATR).
          */
 
-        $ATR = $this->ATR->calculate($TR);
+        $ATR = $this->ATR->calculate(value: $TR);
         $DIp = null;
         $DIm = null;
 
@@ -38,16 +38,13 @@ final readonly class DI implements DIInterface
              */
 
             if ($ATR->isZero()) {
-                $DIp = new Number(0);
-                $DIm = new Number(0);
+                $DIp = new Number(value: 0);
+                $DIm = new Number(value: 0);
             } else {
-                $DIp = $DMpSMA->dividedBy($ATR)->multipliedBy(100);
-                $DIm = $DMmSMA->dividedBy($ATR)->multipliedBy(100);
+                $DIp = $DMpSMA->dividedBy(value: $ATR)->multipliedBy(value: 100);
+                $DIm = $DMmSMA->dividedBy(value: $ATR)->multipliedBy(value: 100);
             }
         }
-        return new DIResult(
-            $DIp,
-            $DIm,
-        );
+        return new DIResult(DIp: $DIp, DIm: $DIm);
     }
 }
