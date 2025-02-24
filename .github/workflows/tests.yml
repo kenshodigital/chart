@@ -1,0 +1,38 @@
+name: Tests
+
+on:
+  push:
+    branches: [ "2.x" ]
+  pull_request:
+    branches: [ "2.x" ]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name:    Test
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        php-versions: ['8.2', '8.3', '8.4']
+    steps:
+      - name: Setup
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          extensions:  bcmath, dom, json, libxml, mbstring, xml, xmlwriter
+          tools:       composer:v2
+          coverage:    none
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Validate
+        run:  composer validate --strict
+      - name: Build
+        run:  composer install --prefer-dist --no-progress
+      - name: PHPStan
+        run:  composer run phpstan
+      - name: PHPUnit
+        run:  composer run phpunit
