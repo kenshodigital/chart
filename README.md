@@ -1,18 +1,20 @@
 # kenshō chart
 
-Calculates [indicators][1] for [technical chart analysis][2] in [PHP][3].
+[![Tests][qYMN]][9Jne]
+
+Calculates [technical indicators][8LYS] for [technical analysis][7RzT] in [PHP][9mqY].
 
 ## General
 
-- [PHP 8.2][4]
+- [PHP 8.2][yNT3], [PHP 8.3][886u], [PHP 8.4][wCzQ]
 - Minimal dependencies. 
-- Uses [brick/math][5] for arbitrary precision numbers.
+- Uses [brick/math][R3EG] for arbitrary precision numbers.
 - Avoids redundant calculations and keeps the overall complexity low.
-- Unit- and integration tested against [other libraries][6] and [real-world data][7].
+- Unit- and integration tested against [other libraries][QFtS] and [real-world data][fcZM].
 
 ### Audience
 
-The library assumes a basic understanding of [technical analysis][2] and how to use these [indicators][1].
+The library assumes a basic understanding of [technical analysis][7RzT] and how to use these [technical indicators][8LYS].
 
 ## Installation
 
@@ -22,9 +24,9 @@ composer require kenshodigital/chart ^2.1
 
 ## Usage
 
-- [Prepare chart][8]
-- [Calculate indicators][9]
-- [Calculate trend indicators][10]
+- [Prepare chart][LgjB]
+- [Calculate indicators][BXC6]
+- [Calculate trend indicators][jJTZ]
 
 ### Prepare chart
 
@@ -54,10 +56,10 @@ $chart = ChartFactory::bootstrap([
 
 ### Calculate indicators
 
-- [SMA][11]
-- [EMA][12]
-- [+DI & -DI][13]
-- [ADX][14]
+- [SMA][c3Lg]
+- [EMA][A88M]
+- [+DI & -DI][AL9J]
+- [ADX][YZeF]
 
 #### SMA (Simple Moving Average)
 
@@ -171,19 +173,23 @@ $result    = $chart->getTrend($SMAPeriod, $EMAPeriod);
 
 > Note about floating-point values: instantiating from a float might be unsafe, as floating-point values are imprecise by design, and could result in a loss of information. Always prefer instantiating from a string, which supports an unlimited number of digits.
 >
-> — [brick/math][5]
+> — [brick/math][R3EG]
 
- [1]: https://en.wikipedia.org/wiki/Technical_indicator
- [2]: https://en.wikipedia.org/wiki/Technical_analysis
- [3]: https://www.php.net
- [4]: https://www.php.net/releases/8.2/en.php
- [5]: https://github.com/brick/math
- [6]: https://github.com/bennycode/trading-signals
- [7]: https://www.alphavantage.co
- [8]: #prepare-chart
- [9]: #calculate-indicators
-[10]: #calculate-trend-indicators
-[11]: #sma-simple-moving-average
-[12]: #ema-exponential-moving-average
-[13]: #di---di-positive---negative-directional-indicator
-[14]: #adx-average-directional-index
+[qYMN]: https://github.com/kenshodigital/chart/actions/workflows/tests.yml/badge.svg
+[9Jne]: https://github.com/kenshodigital/chart/actions/workflows/tests.yml
+[8LYS]: https://en.wikipedia.org/wiki/Technical_indicator
+[7RzT]: https://en.wikipedia.org/wiki/Technical_analysis
+[9mqY]: https://www.php.net
+[yNT3]: https://www.php.net/releases/8.2/en.php
+[886u]: https://www.php.net/releases/8.3/en.php
+[wCzQ]: https://www.php.net/releases/8.4/en.php
+[R3EG]: https://github.com/brick/math
+[QFtS]: https://github.com/bennycode/trading-signals
+[fcZM]: https://www.alphavantage.co
+[LgjB]: #prepare-chart
+[BXC6]: #calculate-indicators
+[jJTZ]: #calculate-trend-indicators
+[c3Lg]: #sma-simple-moving-average
+[A88M]: #ema-exponential-moving-average
+[AL9J]: #di---di-positive---negative-directional-indicator
+[YZeF]: #adx-average-directional-index
