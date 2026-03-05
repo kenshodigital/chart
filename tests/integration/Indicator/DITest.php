@@ -43,7 +43,7 @@ final class DITest extends TestCase
     }
 
     /**
-     * @return array<string, array<string, int|array<string, string>|array<string, string|null>>>
+     * @return array<string, array<string, array<string, array<string, string|null>>|int>>
      */
     public static function provideData(): array
     {

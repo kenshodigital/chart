@@ -11,8 +11,8 @@ use PHPUnit\Framework\TestCase;
 final class CandleFactoryTest extends TestCase
 {
     /**
-     * @param array<string, string> $values
-     * @param array<string, string> $expected
+     * @param array<string, array<string, string>> $values
+     * @param array<string, array<string, string>> $expected
      *
      * @throws MathException
      */

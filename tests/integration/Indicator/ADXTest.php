@@ -43,7 +43,7 @@ final class ADXTest extends TestCase
     }
 
     /**
-     * @return array<string, array<string, int|array<string, array<string, string>|null>>>
+     * @return array<string, array<string, array<string, array<string,string|null>|string|null>|int>>
      */
     public static function provideData(): array
     {

@@ -104,7 +104,7 @@ final class ChartTest extends TestCase
     }
 
     /**
-     * @return array<string, array<string, int|array<string, string>|string|null>>
+     * @return array<string, array<string, array<string, array<string, string>|string|null>|int>>
      */
     public static function provideDataSMA(): array
     {
@@ -3341,7 +3341,7 @@ final class ChartTest extends TestCase
     }
 
     /**
-     * @return array<string, array<string, int|array<string, string>|string|null>>
+     * @return array<string, array<string, array<string, array<string, string>|string|null>|int>>
      */
     public static function provideDataEMA(): array
     {
@@ -6578,7 +6578,7 @@ final class ChartTest extends TestCase
     }
 
     /**
-     * @return array<string, array<string, int|array<string, string>|array<string, string|null>>>
+     * @return array<string, array<string, array<string, array<string, string|null>>|int>>
      */
     public static function provideDataDI(): array
     {
@@ -11015,7 +11015,7 @@ final class ChartTest extends TestCase
     }
 
     /**
-     * @return array<string, array<string, int|array<string, string>|string|null>>
+     * @return array<string, array<string, array<string, array<string, string>|string|null>|int>>
      */
     public static function provideDataADX(): array
     {
@@ -14252,7 +14252,7 @@ final class ChartTest extends TestCase
     }
 
     /**
-     * @return array<string, array<string, int|array<string, string>|array<string, string|null>>>
+     * @return array<string, array<string, array<string, array<string, string|null>>|int>>
      */
     public static function provideDataTrend(): array
     {
