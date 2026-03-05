@@ -12,27 +12,30 @@ permissions:
 jobs:
   test:
     name:    Test
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-versions: ['8.2', '8.3', '8.4']
+        php-versions: ['8.2', '8.3', '8.4', '8.5']
     steps:
       - name: Setup
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
-          extensions:  bcmath, dom, json, libxml, mbstring, xml, xmlwriter
+          extensions:  bcmath, ctype, dom, json, libxml, mbstring, phar, tokenizer, xml, xmlwriter
           tools:       composer:v2
           coverage:    none
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
+
       - name: Validate
         run:  composer validate --strict
+
       - name: Build
-        run:  composer install --prefer-dist --no-progress
+        run:  composer install --no-interaction --optimize-autoloader
+
       - name: PHPStan
         run:  composer run phpstan
+
       - name: PHPUnit
         run:  composer run phpunit
