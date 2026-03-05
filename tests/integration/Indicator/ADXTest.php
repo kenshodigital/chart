@@ -33,7 +33,7 @@ final class ADXTest extends TestCase
                     BigDecimal::of($DIm),
                 )?->toScale(
                     4,
-                    RoundingMode::HALF_UP,
+                    RoundingMode::HalfUp,
                 )->__toString();
             } else {
                 $actual[$date] = null;

@@ -32,8 +32,8 @@ final class DITest extends TestCase
             $DMm           = BigDecimal::of($DMm);
             $TR            = BigDecimal::of($TR);
             $result        = $instance->calculate($DMp, $DMm, $TR);
-            $DIp           = $result->DIp?->toScale(4, RoundingMode::HALF_UP)->__toString();
-            $DIm           = $result->DIm?->toScale(4, RoundingMode::HALF_UP)->__toString();
+            $DIp           = $result->DIp?->toScale(4, RoundingMode::HalfUp)->__toString();
+            $DIm           = $result->DIm?->toScale(4, RoundingMode::HalfUp)->__toString();
             $actual[$date] = [
                 'DIp' => $DIp,
                 'DIm' => $DIm,

@@ -31,9 +31,9 @@ final class CandleFactoryTest extends TestCase
         ]) {
             $result        = CandleFactory::create($open, $high, $low, $close, $volume, $previous);
             $previous      = $result;
-            $TR            = $result->TR->toScale(4, RoundingMode::HALF_UP)->__toString();
-            $DMp           = $result->DMp->toScale(4, RoundingMode::HALF_UP)->__toString();
-            $DMm           = $result->DMm->toScale(4, RoundingMode::HALF_UP)->__toString();
+            $TR            = $result->TR->toScale(4, RoundingMode::HalfUp)->__toString();
+            $DMp           = $result->DMp->toScale(4, RoundingMode::HalfUp)->__toString();
+            $DMm           = $result->DMm->toScale(4, RoundingMode::HalfUp)->__toString();
             $actual[$date] = [
                 'TR'  => $TR,
                 'DMp' => $DMp,

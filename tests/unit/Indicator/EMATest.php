@@ -43,7 +43,7 @@ final class EMATest extends TestCase
                 BigDecimal::of($value),
             )?->toScale(
                 4,
-                RoundingMode::HALF_UP,
+                RoundingMode::HalfUp,
             )->__toString();
         }
         $this->assertSame($expected, $actual);

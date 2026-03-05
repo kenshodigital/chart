@@ -15,7 +15,7 @@ use Kensho\Chart\Trend;
 
 final readonly class Chart implements ChartInterface
 {
-    private const ROUNDING_MODE = RoundingMode::HALF_UP;
+    private const ROUNDING_MODE = RoundingMode::HalfUp;
     private const SCALE         = 4;
 
     /**
