@@ -16,7 +16,8 @@
         "technical analysis",
         "technical indicator",
         "trend",
-        "trend analysis"
+        "trend analysis",
+        "trend indicator"
     ],
     "authors":
     [
@@ -32,11 +33,11 @@
     "require":
     {
         "php":        "^8.2",
-        "brick/math": "^0.12"
+        "brick/math": "^0.15"
     },
     "require-dev":
     {
-        "phpstan/phpstan": "^1.12",
+        "phpstan/phpstan": "^2.1",
         "phpunit/phpunit": "^11.5"
     },
     "autoload":
