@@ -1,0 +1,11 @@
+{
+	"formatter": {
+		"always-break-named-arguments-list": false,
+		"use-tabs": true
+	},
+	"source": {
+		"includes": ["./vendor"],
+		"paths": ["./src", "./tests"]
+	},
+	"php-version": "8.2"
+}

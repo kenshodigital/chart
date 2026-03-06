@@ -32,6 +32,7 @@
 		"brick/math": "^0.15"
 	},
 	"require-dev": {
+		"carthage-software/mago": "^1.13",
 		"phpstan/phpstan": "^2.1",
 		"phpunit/phpunit": "^11.5"
 	},
@@ -47,15 +48,20 @@
 		}
 	},
 	"scripts": {
-		"phpstan": [
+		"analyze": [
 			"@php phpstan --memory-limit=-1"
 		],
-		"phpunit": [
-			"@php phpunit"
+		"check": [
+			"@php mago fmt --check"
+		],
+		"format": [
+			"@php mago fmt"
+		],
+		"lint": [
+			"@php mago lint --semantics"
 		],
 		"test": [
-			"@phpstan",
-			"@phpunit"
+			"@php phpunit"
 		]
 	}
 }
