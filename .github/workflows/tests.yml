@@ -11,13 +11,13 @@ permissions:
 
 jobs:
   test:
-    name: Test
+    name: Test codebase
     runs-on: ubuntu-latest
     strategy:
       matrix:
         php-versions: ["8.2", "8.3", "8.4", "8.5"]
     steps:
-      - name: Setup
+      - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
@@ -25,17 +25,27 @@ jobs:
           tools: composer:v2
           coverage: none
 
-      - name: Checkout
+      - name: Check out repository
         uses: actions/checkout@v6
 
-      - name: Validate
+      - name: Validate configuration
         run: composer validate --strict
 
-      - name: Build
-        run: composer install --no-interaction --optimize-autoloader
+      - name: Install dependencies
+        run: |
+          composer install --no-interaction --optimize-autoloader
+          npm ci
 
-      - name: PHPStan
-        run: composer run phpstan
+      - name: Check formatting
+        run: |
+          composer run check
+          npm run check
 
-      - name: PHPUnit
-        run: composer run phpunit
+      - name: Lint codebase
+        run: composer run lint
+
+      - name: Run static analysis
+        run: composer run analyze
+
+      - name: Run unit- & integration-tests
+        run: composer run test
