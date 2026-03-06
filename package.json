@@ -1,0 +1,9 @@
+{
+	"scripts": {
+		"check": "oxfmt --check",
+		"format": "oxfmt"
+	},
+	"devDependencies": {
+		"oxfmt": "^0.36"
+	}
+}
