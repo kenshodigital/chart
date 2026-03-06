@@ -11,7 +11,7 @@ Calculates [technical indicators][8LYS] in PHP.
 ## General
 
 - [PHP 8.2][yNT3], [PHP 8.3][886u], [PHP 8.4][wCzQ], [PHP 8.5][wCzQ]
-- Minimal dependencies. 
+- Minimal dependencies.
 - Uses [brick/math][R3EG] for arbitrary precision numbers.
 - Avoids redundant calculations and keeps the overall complexity low.
 - Unit- and integration tested against [other libraries][QFtS] and [real-world data][fcZM].
@@ -124,7 +124,7 @@ $result = $chart->getDI($period);
 // ],
 // '2023-01-26' => [
 //     'DIp' => null,
-//     'DIm' => null, 
+//     'DIm' => null,
 // ],
 // ...
 // '2023-02-02' => [

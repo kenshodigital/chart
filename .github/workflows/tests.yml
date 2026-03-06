@@ -2,40 +2,40 @@ name: Tests
 
 on:
   push:
-    branches: [ "2.x" ]
+    branches: ["2.x"]
   pull_request:
-    branches: [ "2.x" ]
+    branches: ["2.x"]
 
 permissions:
   contents: read
 
 jobs:
   test:
-    name:    Test
+    name: Test
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-versions: ['8.2', '8.3', '8.4', '8.5']
+        php-versions: ["8.2", "8.3", "8.4", "8.5"]
     steps:
       - name: Setup
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
-          extensions:  bcmath, ctype, dom, json, libxml, mbstring, phar, tokenizer, xml, xmlwriter
-          tools:       composer:v2
-          coverage:    none
+          extensions: bcmath, ctype, dom, json, libxml, mbstring, phar, tokenizer, xml, xmlwriter
+          tools: composer:v2
+          coverage: none
 
       - name: Checkout
         uses: actions/checkout@v6
 
       - name: Validate
-        run:  composer validate --strict
+        run: composer validate --strict
 
       - name: Build
-        run:  composer install --no-interaction --optimize-autoloader
+        run: composer install --no-interaction --optimize-autoloader
 
       - name: PHPStan
-        run:  composer run phpstan
+        run: composer run phpstan
 
       - name: PHPUnit
-        run:  composer run phpunit
+        run: composer run phpunit
