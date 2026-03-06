@@ -6,8 +6,8 @@ use Brick\Math\BigDecimal;
 
 final readonly class DIResult
 {
-    public function __construct(
-        public BigDecimal|null $DIp,
-        public BigDecimal|null $DIm,
-    ) {}
+	public function __construct(
+		public ?BigDecimal $DIp,
+		public ?BigDecimal $DIm,
+	) {}
 }

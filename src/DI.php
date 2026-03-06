@@ -7,8 +7,8 @@ namespace Kensho\Chart;
  */
 final readonly class DI
 {
-    public function __construct(
-        public string|null $DIp,
-        public string|null $DIm,
-    ) {}
+	public function __construct(
+		public ?string $DIp,
+		public ?string $DIm,
+	) {}
 }

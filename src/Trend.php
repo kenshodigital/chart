@@ -7,12 +7,12 @@ namespace Kensho\Chart;
  */
 final readonly class Trend
 {
-    public function __construct(
-        public string|null $close,
-        public string|null $SMA,
-        public string|null $EMA,
-        public string|null $DIp,
-        public string|null $DIm,
-        public string|null $ADX,
-    ) {}
+	public function __construct(
+		public ?string $close,
+		public ?string $SMA,
+		public ?string $EMA,
+		public ?string $DIp,
+		public ?string $DIm,
+		public ?string $ADX,
+	) {}
 }

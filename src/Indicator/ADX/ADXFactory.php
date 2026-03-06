@@ -6,10 +6,8 @@ use Kensho\Chart\Indicator\WSMA\WSMA;
 
 final readonly class ADXFactory implements ADXFactoryInterface
 {
-    public static function create(int $period): ADXInterface
-    {
-        return new ADX(
-            new WSMA($period),
-        );
-    }
+	public static function create(int $period): ADXInterface
+	{
+		return new ADX(new WSMA($period));
+	}
 }

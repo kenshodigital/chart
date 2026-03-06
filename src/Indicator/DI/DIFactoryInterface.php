@@ -4,5 +4,5 @@ namespace Kensho\Chart\Indicator\DI;
 
 interface DIFactoryInterface
 {
-    public static function create(int $period): DIInterface;
+	public static function create(int $period): DIInterface;
 }

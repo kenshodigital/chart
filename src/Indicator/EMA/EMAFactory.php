@@ -6,11 +6,11 @@ use Brick\Math\Exception\MathException;
 
 final readonly class EMAFactory implements EMAFactoryInterface
 {
-    /**
-     * @throws MathException
-     */
-    public static function create(int $period): EMAInterface
-    {
-        return new EMA($period);
-    }
+	/**
+	 * @throws MathException
+	 */
+	public static function create(int $period): EMAInterface
+	{
+		return new EMA($period);
+	}
 }

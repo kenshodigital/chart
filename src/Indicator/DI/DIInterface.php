@@ -9,5 +9,5 @@ use Brick\Math\BigDecimal;
  */
 interface DIInterface
 {
-    public function calculate(BigDecimal $DMp, BigDecimal $DMm, BigDecimal $TR): DIResult;
+	public function calculate(BigDecimal $DMp, BigDecimal $DMm, BigDecimal $TR): DIResult;
 }

@@ -4,5 +4,5 @@ namespace Kensho\Chart\Indicator\SMA;
 
 interface SMAFactoryInterface
 {
-    public static function create(int $period): SMAInterface;
+	public static function create(int $period): SMAInterface;
 }

@@ -4,5 +4,5 @@ namespace Kensho\Chart\Indicator\ADX;
 
 interface ADXFactoryInterface
 {
-    public static function create(int $period): ADXInterface;
+	public static function create(int $period): ADXInterface;
 }

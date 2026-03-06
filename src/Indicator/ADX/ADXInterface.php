@@ -9,5 +9,5 @@ use Brick\Math\BigDecimal;
  */
 interface ADXInterface
 {
-    public function calculate(BigDecimal $DIp, BigDecimal $DIm): BigDecimal|null;
+	public function calculate(BigDecimal $DIp, BigDecimal $DIm): ?BigDecimal;
 }

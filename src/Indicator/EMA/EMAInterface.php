@@ -9,5 +9,5 @@ use Brick\Math\BigDecimal;
  */
 interface EMAInterface
 {
-    public function calculate(BigDecimal $value): BigDecimal|null;
+	public function calculate(BigDecimal $value): ?BigDecimal;
 }

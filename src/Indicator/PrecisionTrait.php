@@ -6,6 +6,6 @@ use Brick\Math\RoundingMode;
 
 trait PrecisionTrait
 {
-    private const ROUNDING_MODE = RoundingMode::HalfUp;
-    private const SCALE         = 20;
+	private const ROUNDING_MODE = RoundingMode::HalfUp;
+	private const SCALE = 20;
 }
