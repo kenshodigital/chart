@@ -7,6 +7,8 @@ use Kensho\Chart\Trend;
 
 /**
  * Calculate indicators for technical chart analysis.
+ *
+ * @api
  */
 interface ChartInterface
 {

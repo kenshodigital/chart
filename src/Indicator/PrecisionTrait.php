@@ -4,6 +4,9 @@ namespace Kensho\Chart\Indicator;
 
 use Brick\Math\RoundingMode;
 
+/**
+ * @internal
+ */
 trait PrecisionTrait
 {
 	private const ROUNDING_MODE = RoundingMode::HalfUp;

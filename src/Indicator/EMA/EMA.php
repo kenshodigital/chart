@@ -17,6 +17,7 @@ final class EMA implements EMAInterface
 	private ?BigDecimal $result;
 
 	/**
+	 * @throws DomainException
 	 * @throws MathException
 	 */
 	public function __construct(int $period)

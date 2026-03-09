@@ -19,6 +19,9 @@ final class SMA implements SMAInterface
 	private int $bufferSize;
 	private BigDecimal $sum;
 
+	/**
+	 * @throws DomainException
+	 */
 	public function __construct(int $period)
 	{
 		if ($period < 2) {
@@ -44,6 +47,9 @@ final class SMA implements SMAInterface
 			return null;
 		}
 		if ($this->bufferSize > $this->period) {
+			/**
+			 * @var BigDecimal $oldest
+			 */
 			$oldest = array_shift($this->buffer);
 			$this->sum = $this->sum->minus($oldest);
 			$this->bufferSize--;

@@ -5,10 +5,12 @@ namespace Kensho\Chart\Candle;
 use Brick\Math\BigDecimal;
 use Brick\Math\BigInteger;
 use Brick\Math\Exception\MathException;
+use DomainException;
 
 final readonly class CandleFactory implements CandleFactoryInterface
 {
 	/**
+	 * @throws DomainException
 	 * @throws MathException
 	 */
 	public static function create(

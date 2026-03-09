@@ -5,15 +5,21 @@ namespace Kensho\Chart\Tests\Integration\Chart;
 use Brick\Math\Exception\MathException;
 use Kensho\Chart\Chart\ChartFactory;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Exception;
+use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\UnknownClassOrInterfaceException;
 
 final class ChartTest extends TestCase
 {
 	/**
-	 * @param array<string, array<string, string>> $values
-	 * @param array<string, string|null>           $expected
+	 * @param array<string, array{open: string, high: string, low: string, close: string, volume: string}> $values
+	 * @param array<string, string|null>                                                                   $expected
 	 *
+	 * @throws Exception
+	 * @throws ExpectationFailedException
 	 * @throws MathException
+	 * @throws UnknownClassOrInterfaceException
 	 */
 	#[DataProvider('provideDataSMA')]
 	public function testGetSMA(int $period, array $values, array $expected): void
@@ -25,10 +31,13 @@ final class ChartTest extends TestCase
 	}
 
 	/**
-	 * @param array<string, array<string, string>> $values
-	 * @param array<string, string|null>           $expected
+	 * @param array<string, array{open: string, high: string, low: string, close: string, volume: string}> $values
+	 * @param array<string, string|null>                                                                   $expected
 	 *
+	 * @throws Exception
+	 * @throws ExpectationFailedException
 	 * @throws MathException
+	 * @throws UnknownClassOrInterfaceException
 	 */
 	#[DataProvider('provideDataEMA')]
 	public function testGetEMA(int $period, array $values, array $expected): void
@@ -40,10 +49,13 @@ final class ChartTest extends TestCase
 	}
 
 	/**
-	 * @param array<string, array<string, string>>      $values
-	 * @param array<string, array<string, string|null>> $expected
+	 * @param array<string, array{open: string, high: string, low: string, close: string, volume: string}> $values
+	 * @param array<string, array{DIp: string|null, DIm: string|null}>                                      $expected
 	 *
+	 * @throws Exception
+	 * @throws ExpectationFailedException
 	 * @throws MathException
+	 * @throws UnknownClassOrInterfaceException
 	 */
 	#[DataProvider('provideDataDI')]
 	public function testGetDI(int $period, array $values, array $expected): void
@@ -63,10 +75,13 @@ final class ChartTest extends TestCase
 	}
 
 	/**
-	 * @param array<string, array<string, string>> $values
-	 * @param array<string, string|null>           $expected
+	 * @param array<string, array{open: string, high: string, low: string, close: string, volume: string}> $values
+	 * @param array<string, string|null>                                                                   $expected
 	 *
+	 * @throws Exception
+	 * @throws ExpectationFailedException
 	 * @throws MathException
+	 * @throws UnknownClassOrInterfaceException
 	 */
 	#[DataProvider('provideDataADX')]
 	public function testGetADX(int $period, array $values, array $expected): void
@@ -78,10 +93,13 @@ final class ChartTest extends TestCase
 	}
 
 	/**
-	 * @param array<string, array<string, string>>      $values
-	 * @param array<string, array<string, string|null>> $expected
+	 * @param array<string, array{open: string, high: string, low: string, close: string, volume: string}> $values
+	 * @param array<string, array{SMA: string|null, EMA: string|null, DIp: string|null, DIm: string|null, ADX: string|null}> $expected
 	 *
+	 * @throws Exception
+	 * @throws ExpectationFailedException
 	 * @throws MathException
+	 * @throws UnknownClassOrInterfaceException
 	 */
 	#[DataProvider('provideDataTrend')]
 	public function testGetTrend(int $SMAperiod, int $EMAperiod, array $values, array $expected): void
@@ -104,7 +122,11 @@ final class ChartTest extends TestCase
 	}
 
 	/**
-	 * @return array<string, array<string, array<string, array<string, string>|string|null>|int>>
+	 * @return array<string, array{
+	 *     period: int,
+	 *     values: array<string, array{open: string, high: string, low: string, close: string, volume: string}>,
+	 *     expected: array<string, string|null>
+	 * }>
 	 */
 	public static function provideDataSMA(): array
 	{

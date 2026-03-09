@@ -6,6 +6,8 @@ use Brick\Math\BigDecimal;
 
 /**
  * Calculates the directional indicators (+DI & -DI).
+ *
+ * @api
  */
 interface DIInterface
 {

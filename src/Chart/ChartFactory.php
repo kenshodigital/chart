@@ -15,6 +15,9 @@ use Kensho\Chart\Indicator\SMA\SMAFactoryInterface;
 
 final readonly class ChartFactory implements ChartFactoryInterface
 {
+	/**
+	 * @param array<string, array{open: string, high: string, low: string, close: string, volume: string}> $data
+	 */
 	public static function bootstrap(array $data): Chart
 	{
 		return (new ChartFactory(
@@ -34,6 +37,9 @@ final readonly class ChartFactory implements ChartFactoryInterface
 		private ADXFactoryInterface $ADXFactory,
 	) {}
 
+	/**
+	 * @param array<string, array{open: string, high: string, low: string, close: string, volume: string}> $data
+	 */
 	public function create(array $data): Chart
 	{
 		$previous = null;

@@ -8,12 +8,19 @@ use Brick\Math\Exception\MathException;
 use DomainException;
 use Kensho\Chart\Candle\Candle;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Exception;
+use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\UnknownClassOrInterfaceException;
 
 final class CandleTest extends TestCase
 {
 	/**
+	 * @throws DomainException
+	 * @throws Exception
+	 * @throws ExpectationFailedException
 	 * @throws MathException
+	 * @throws UnknownClassOrInterfaceException
 	 */
 	#[DataProvider('provideInvalidValues')]
 	public function testInvalidValues(string $open, string $high, string $low, string $close, string $volume): void
@@ -35,7 +42,11 @@ final class CandleTest extends TestCase
 	}
 
 	/**
+	 * @throws DomainException
+	 * @throws Exception
+	 * @throws ExpectationFailedException
 	 * @throws MathException
+	 * @throws UnknownClassOrInterfaceException
 	 */
 	#[DataProvider('provideValidValues')]
 	public function testValidValues(string $open, string $high, string $low, string $close, string $volume): void

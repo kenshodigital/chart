@@ -6,6 +6,8 @@ use Brick\Math\BigDecimal;
 
 /**
  * Calculates Wilder’s smoothed moving average.
+ *
+ * @api
  */
 interface WSMAInterface
 {

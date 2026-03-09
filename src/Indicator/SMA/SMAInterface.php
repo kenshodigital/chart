@@ -6,6 +6,8 @@ use Brick\Math\BigDecimal;
 
 /**
  * Calculates the simple moving average (SMA).
+ *
+ * @api
  */
 interface SMAInterface
 {

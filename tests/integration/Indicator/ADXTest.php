@@ -5,17 +5,25 @@ namespace Kensho\Chart\Tests\Integration\Indicator;
 use Brick\Math\BigDecimal;
 use Brick\Math\Exception\MathException;
 use Brick\Math\RoundingMode;
+use DomainException;
 use Kensho\Chart\Indicator\ADX\ADXFactory;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Exception;
+use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\UnknownClassOrInterfaceException;
 
 final class ADXTest extends TestCase
 {
 	/**
-	 * @param array<string, array<string, string|null>> $values
-	 * @param array<string, string|null>                $expected
+	 * @param array<string, array{DIp: string|null, DIm: string|null}> $values
+	 * @param array<string, string|null>                              $expected
 	 *
+	 * @throws DomainException
+	 * @throws Exception
+	 * @throws ExpectationFailedException
 	 * @throws MathException
+	 * @throws UnknownClassOrInterfaceException
 	 */
 	#[DataProvider('provideData')]
 	public function testCalculate(int $period, array $values, array $expected): void
@@ -40,7 +48,11 @@ final class ADXTest extends TestCase
 	}
 
 	/**
-	 * @return array<string, array<string, array<string, array<string,string|null>|string|null>|int>>
+	 * @return array<string, array{
+	 *     period: int,
+	 *     values: array<string, array{DIp: string|null, DIm: string|null}>,
+	 *     expected: array<string, string|null>
+	 * }>
 	 */
 	public static function provideData(): array
 	{

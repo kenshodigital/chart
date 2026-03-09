@@ -6,6 +6,8 @@ use Brick\Math\BigDecimal;
 
 /**
  * Calculates the average directional movement index (ADX).
+ *
+ * @api
  */
 interface ADXInterface
 {

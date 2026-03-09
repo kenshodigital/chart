@@ -4,17 +4,25 @@ namespace Kensho\Chart\Tests\Unit\Candle;
 
 use Brick\Math\Exception\MathException;
 use Brick\Math\RoundingMode;
+use DomainException;
 use Kensho\Chart\Candle\CandleFactory;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Exception;
+use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\UnknownClassOrInterfaceException;
 
 final class CandleFactoryTest extends TestCase
 {
 	/**
-	 * @param array<string, array<string, string>> $values
-	 * @param array<string, array<string, string>> $expected
+	 * @param array<string, array{open: string, high: string, low: string, close: string, volume: string}> $values
+	 * @param array<string, array{TR: string, DMp: string, DMm: string}> $expected
 	 *
+	 * @throws DomainException
+	 * @throws Exception
+	 * @throws ExpectationFailedException
 	 * @throws MathException
+	 * @throws UnknownClassOrInterfaceException
 	 */
 	#[DataProvider('provideData')]
 	public function testCalculate(array $values, array $expected): void
@@ -44,7 +52,10 @@ final class CandleFactoryTest extends TestCase
 	}
 
 	/**
-	 * @return array<string, array<string, array<string, array<string, string>>>>
+	 * @return array<string, array{
+	 *     values: array<string, array{open: string, high: string, low: string, close: string, volume: string}>,
+	 *     expected: array<string, array{TR: string, DMp: string, DMm: string}>
+	 * }>
 	 */
 	public static function provideData(): array
 	{

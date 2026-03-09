@@ -9,10 +9,19 @@ use DomainException;
 use Kensho\Chart\Indicator\SMA\SMA;
 use Kensho\Chart\Indicator\SMA\SMAInterface;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Exception;
+use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\UnknownClassOrInterfaceException;
 
 final class SMATest extends TestCase
 {
+	/**
+	 * @throws DomainException
+	 * @throws Exception
+	 * @throws ExpectationFailedException
+	 * @throws UnknownClassOrInterfaceException
+	 */
 	#[DataProvider('provideInvalidPeriod')]
 	public function testInvalidPeriod(int $period): void
 	{
@@ -27,7 +36,11 @@ final class SMATest extends TestCase
 	 * @param array<string, string>      $values
 	 * @param array<string, string|null> $expected
 	 *
+	 * @throws DomainException
+	 * @throws Exception
+	 * @throws ExpectationFailedException
 	 * @throws MathException
+	 * @throws UnknownClassOrInterfaceException
 	 */
 	#[DataProvider('provideData')]
 	public function testCalculate(int $period, array $values, array $expected): void

@@ -6,6 +6,8 @@ use Brick\Math\BigDecimal;
 
 /**
  * Calculates the exponential moving average (EMA).
+ *
+ * @api
  */
 interface EMAInterface
 {

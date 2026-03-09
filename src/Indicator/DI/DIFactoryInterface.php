@@ -2,6 +2,9 @@
 
 namespace Kensho\Chart\Indicator\DI;
 
+/**
+ * @api
+ */
 interface DIFactoryInterface
 {
 	public static function create(int $period): DIInterface;

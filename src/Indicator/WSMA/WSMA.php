@@ -17,6 +17,9 @@ final class WSMA implements WSMAInterface
 	private BigDecimal $initialSum;
 	private ?BigDecimal $result;
 
+	/**
+	 * @throws DomainException
+	 */
 	public function __construct(int $period)
 	{
 		if ($period < 2) {

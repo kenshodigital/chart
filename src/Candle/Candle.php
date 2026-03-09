@@ -4,6 +4,7 @@ namespace Kensho\Chart\Candle;
 
 use Brick\Math\BigDecimal;
 use Brick\Math\BigInteger;
+use Brick\Math\Exception\MathException;
 use DomainException;
 
 /**
@@ -12,6 +13,10 @@ use DomainException;
  */
 final readonly class Candle
 {
+	/**
+	 * @throws DomainException
+	 * @throws MathException
+	 */
 	public function __construct(
 		public BigDecimal $open,
 		public BigDecimal $high,

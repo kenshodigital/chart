@@ -3,7 +3,7 @@
 namespace Kensho\Chart\Chart;
 
 use Brick\Math\BigDecimal;
-use Brick\Math\Exception\RoundingNecessaryException;
+use Brick\Math\Exception\MathException;
 use Brick\Math\RoundingMode;
 use Kensho\Chart\Candle\Candle;
 use Kensho\Chart\DI;
@@ -30,7 +30,7 @@ final readonly class Chart implements ChartInterface
 	) {}
 
 	/**
-	 * @throws RoundingNecessaryException
+	 * @throws MathException
 	 */
 	public function getSMA(int $period): array
 	{
@@ -46,7 +46,7 @@ final readonly class Chart implements ChartInterface
 	}
 
 	/**
-	 * @throws RoundingNecessaryException
+	 * @throws MathException
 	 */
 	public function getEMA(int $period): array
 	{
@@ -62,7 +62,7 @@ final readonly class Chart implements ChartInterface
 	}
 
 	/**
-	 * @throws RoundingNecessaryException
+	 * @throws MathException
 	 */
 	public function getDI(int $period): array
 	{
@@ -84,7 +84,7 @@ final readonly class Chart implements ChartInterface
 	}
 
 	/**
-	 * @throws RoundingNecessaryException
+	 * @throws MathException
 	 */
 	public function getADX(int $period): array
 	{
@@ -111,7 +111,7 @@ final readonly class Chart implements ChartInterface
 	}
 
 	/**
-	 * @throws RoundingNecessaryException
+	 * @throws MathException
 	 */
 	public function getTrend(int $SMAPeriod, int $EMAPeriod): array
 	{
@@ -149,7 +149,7 @@ final readonly class Chart implements ChartInterface
 	}
 
 	/**
-	 * @throws RoundingNecessaryException
+	 * @throws MathException
 	 */
 	private function round(?BigDecimal $value): ?string
 	{
