@@ -1,4 +1,21 @@
 {
+	"analyzer": {
+		"find-unused-expressions": true,
+		"find-unused-definitions": true,
+		"analyze-dead-code": true,
+		"check-throws": true,
+		"check-missing-override": true,
+		"find-unused-parameters": true,
+		"check-missing-type-hints": true,
+		"check-closure-missing-type-hints": true,
+		"check-arrow-function-missing-type-hints": true,
+		"enforce-class-finality": true,
+		"require-api-or-internal": true,
+		"strict-list-index-checks": true,
+		"no-boolean-literal-comparison": true,
+		"allow-possibly-undefined-array-keys": false,
+		"trust-existence-checks": false
+	},
 	"formatter": {
 		"always-break-named-arguments-list": false,
 		"use-tabs": true
