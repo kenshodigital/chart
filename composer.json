@@ -32,7 +32,7 @@
 		"brick/math": "^0.15"
 	},
 	"require-dev": {
-		"carthage-software/mago": "^1.13",
+		"carthage-software/mago": "^1.14",
 		"phpunit/phpunit": "^11.5"
 	},
 	"autoload": {
