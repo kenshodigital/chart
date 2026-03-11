@@ -33,7 +33,6 @@
 	},
 	"require-dev": {
 		"carthage-software/mago": "^1.13",
-		"phpstan/phpstan": "^2.1",
 		"phpunit/phpunit": "^11.5"
 	},
 	"autoload": {
@@ -48,8 +47,13 @@
 		}
 	},
 	"scripts": {
+		"all": [
+			"@check",
+			"@lint",
+			"@analyze",
+			"@test"
+		],
 		"analyze": [
-			"@php phpstan --memory-limit=-1",
 			"@php mago analyze"
 		],
 		"check": [
