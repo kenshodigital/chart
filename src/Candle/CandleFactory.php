@@ -8,6 +8,7 @@ use Brick\Math\BigDecimal;
 use Brick\Math\BigInteger;
 use Brick\Math\Exception\MathException;
 use DomainException;
+use Override;
 
 final readonly class CandleFactory implements CandleFactoryInterface
 {
@@ -15,6 +16,7 @@ final readonly class CandleFactory implements CandleFactoryInterface
 	 * @throws DomainException
 	 * @throws MathException
 	 */
+	#[Override]
 	public static function create(
 		string $open,
 		string $high,

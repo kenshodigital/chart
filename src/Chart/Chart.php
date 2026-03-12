@@ -14,11 +14,12 @@ use Kensho\Chart\Indicator\DI\DIFactoryInterface;
 use Kensho\Chart\Indicator\EMA\EMAFactoryInterface;
 use Kensho\Chart\Indicator\SMA\SMAFactoryInterface;
 use Kensho\Chart\Trend;
+use Override;
 
 final readonly class Chart implements ChartInterface
 {
-	private const ROUNDING_MODE = RoundingMode::HalfUp;
-	private const SCALE = 4;
+	private const RoundingMode ROUNDING_MODE = RoundingMode::HalfUp;
+	private const int SCALE = 4;
 
 	/**
 	 * @param array<string, Candle> $candles
@@ -34,6 +35,7 @@ final readonly class Chart implements ChartInterface
 	/**
 	 * @throws MathException
 	 */
+	#[Override]
 	public function getSMA(int $period): array
 	{
 		$SMA = $this->SMAFactory::create($period);
@@ -50,6 +52,7 @@ final readonly class Chart implements ChartInterface
 	/**
 	 * @throws MathException
 	 */
+	#[Override]
 	public function getEMA(int $period): array
 	{
 		$EMA = $this->EMAFactory::create($period);
@@ -66,6 +69,7 @@ final readonly class Chart implements ChartInterface
 	/**
 	 * @throws MathException
 	 */
+	#[Override]
 	public function getDI(int $period): array
 	{
 		$DI = $this->DIFactory::create($period);
@@ -88,6 +92,7 @@ final readonly class Chart implements ChartInterface
 	/**
 	 * @throws MathException
 	 */
+	#[Override]
 	public function getADX(int $period): array
 	{
 		$DI = $this->DIFactory::create($period);
@@ -115,6 +120,7 @@ final readonly class Chart implements ChartInterface
 	/**
 	 * @throws MathException
 	 */
+	#[Override]
 	public function getTrend(int $SMAPeriod, int $EMAPeriod): array
 	{
 		$SMA = $this->SMAFactory::create($SMAPeriod);

@@ -8,6 +8,7 @@ use Brick\Math\BigDecimal;
 use Brick\Math\Exception\MathException;
 use Kensho\Chart\Indicator\PrecisionTrait;
 use Kensho\Chart\Indicator\WSMA\WSMAInterface;
+use Override;
 
 final readonly class ADX implements ADXInterface
 {
@@ -20,6 +21,7 @@ final readonly class ADX implements ADXInterface
 	/**
 	 * @throws MathException
 	 */
+	#[Override]
 	public function calculate(BigDecimal $DIp, BigDecimal $DIm): ?BigDecimal
 	{
 		/*

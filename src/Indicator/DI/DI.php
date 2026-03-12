@@ -8,6 +8,7 @@ use Brick\Math\BigDecimal;
 use Brick\Math\Exception\MathException;
 use Kensho\Chart\Indicator\PrecisionTrait;
 use Kensho\Chart\Indicator\WSMA\WSMAInterface;
+use Override;
 
 final readonly class DI implements DIInterface
 {
@@ -22,20 +23,19 @@ final readonly class DI implements DIInterface
 	/**
 	 * @throws MathException
 	 */
+	#[Override]
 	public function calculate(BigDecimal $DMp, BigDecimal $DMm, BigDecimal $TR): DIResult
 	{
 		/*
 		 * Calculates the smoothed moving averages
 		 * of directional movements (+DM & -DM).
 		 */
-
 		$DMpSMA = $this->DMpSMA->calculate($DMp);
 		$DMmSMA = $this->DMmSMA->calculate($DMm);
 
 		/*
 		 * Calculates the average true range (ATR).
 		 */
-
 		$ATR = $this->ATR->calculate($TR);
 		$DIp = null;
 		$DIm = null;
@@ -44,7 +44,6 @@ final readonly class DI implements DIInterface
 			/*
 			 * Calculates the directional indicators (+DI & -DI).
 			 */
-
 			if ($ATR->isZero()) {
 				$DIp = BigDecimal::zero();
 				$DIm = BigDecimal::zero();

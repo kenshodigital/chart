@@ -8,6 +8,7 @@ use Brick\Math\BigDecimal;
 use Brick\Math\Exception\MathException;
 use DomainException;
 use Kensho\Chart\Indicator\PrecisionTrait;
+use Override;
 
 final class EMA implements EMAInterface
 {
@@ -37,6 +38,7 @@ final class EMA implements EMAInterface
 	/**
 	 * @throws MathException
 	 */
+	#[Override]
 	public function calculate(BigDecimal $value): ?BigDecimal
 	{
 		if ($this->result === null) {

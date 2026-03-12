@@ -6,12 +6,14 @@ namespace Kensho\Chart\Indicator\DI;
 
 use DomainException;
 use Kensho\Chart\Indicator\WSMA\WSMA;
+use Override;
 
 final readonly class DIFactory implements DIFactoryInterface
 {
 	/**
 	 * @throws DomainException
 	 */
+	#[Override]
 	public static function create(int $period): DIInterface
 	{
 		return new DI(new WSMA($period), new WSMA($period), new WSMA($period));

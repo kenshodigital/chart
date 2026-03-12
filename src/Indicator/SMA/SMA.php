@@ -8,6 +8,7 @@ use Brick\Math\BigDecimal;
 use Brick\Math\Exception\MathException;
 use DomainException;
 use Kensho\Chart\Indicator\PrecisionTrait;
+use Override;
 
 final class SMA implements SMAInterface
 {
@@ -39,6 +40,7 @@ final class SMA implements SMAInterface
 	/**
 	 * @throws MathException
 	 */
+	#[Override]
 	public function calculate(BigDecimal $value): ?BigDecimal
 	{
 		$this->buffer[] = $value;

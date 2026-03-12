@@ -14,12 +14,14 @@ use Kensho\Chart\Indicator\EMA\EMAFactory;
 use Kensho\Chart\Indicator\EMA\EMAFactoryInterface;
 use Kensho\Chart\Indicator\SMA\SMAFactory;
 use Kensho\Chart\Indicator\SMA\SMAFactoryInterface;
+use Override;
 
 final readonly class ChartFactory implements ChartFactoryInterface
 {
 	/**
 	 * @param array<string, array{open: string, high: string, low: string, close: string, volume: string}> $data
 	 */
+	#[Override]
 	public static function bootstrap(array $data): Chart
 	{
 		return new ChartFactory(
@@ -42,6 +44,7 @@ final readonly class ChartFactory implements ChartFactoryInterface
 	/**
 	 * @param array<string, array{open: string, high: string, low: string, close: string, volume: string}> $data
 	 */
+	#[Override]
 	public function create(array $data): Chart
 	{
 		$previous = null;
