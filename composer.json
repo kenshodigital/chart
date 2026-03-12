@@ -28,7 +28,7 @@
 		"issues": "https://github.com/kenshodigital/chart/issues"
 	},
 	"require": {
-		"php": "^8.2",
+		"php": "^8.5",
 		"brick/math": "^0.15"
 	},
 	"require-dev": {
