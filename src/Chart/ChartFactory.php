@@ -22,13 +22,13 @@ final readonly class ChartFactory implements ChartFactoryInterface
 	 */
 	public static function bootstrap(array $data): Chart
 	{
-		return (new ChartFactory(
+		return new ChartFactory(
 			new CandleFactory(),
 			new SMAFactory(),
 			new EMAFactory(),
 			new DIFactory(),
 			new ADXFactory(),
-		))->create($data);
+		)->create($data);
 	}
 
 	public function __construct(
